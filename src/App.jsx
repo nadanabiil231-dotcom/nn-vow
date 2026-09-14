@@ -418,54 +418,22 @@ export default function App() {
   };
 
   const getEntranceVideo = (templateName, role = 'couple') => {
-    // Different video collections for different roles
+    // Luxury real-couple walking footage from Pexels. Every theme uses bride + groom together.
     const videosCouple = {
-      Santorini: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'petals', label: 'A romantic beach walk' },
-      Toscana: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'soft-glow', label: 'A garden wedding walk' },
-      Sakura: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'A floral garden entrance' },
-      Deco: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A grand palace entrance' },
-      Provence: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'A garden aisle walk' },
-      Palma: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'A seaside sunset walk' },
-      Bloom: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'petals', label: 'An English garden walk' },
-      Royal: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A royal mansion entrance' },
-      Lantern: { src: 'https://videos.pexels.com/video-files/5895536/5895536-uhd_3840_2160_25fps.mp4', effect: 'lantern-glow', label: 'An old-world architectural walk' },
-      Pyramids: { src: 'https://videos.pexels.com/video-files/12797669/12797669-uhd_3840_2160_25fps.mp4', effect: 'desert-dust', label: 'A desert sunset walk' },
-      Imperial: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A grand historic entrance' },
-      Twilight: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'soft-glow', label: 'A romantic twilight walk' },
+      Santorini: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'A cinematic seaside walk' },
+      Toscana: { src: 'https://videos.pexels.com/video-files/10199075/10199075-uhd_2560_1440_25fps.mp4', effect: 'soft-glow', label: 'A golden countryside walk' },
+      Sakura: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'A garden wedding walk' },
+      Deco: { src: 'https://videos.pexels.com/video-files/36569513/15504683_1080_1920_60fps.mp4', effect: 'gold-dust', label: 'A couture ballroom entrance' },
+      Provence: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'petals', label: 'A romantic garden stroll' },
+      Palma: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'A luxury coastal walk' },
+      Bloom: { src: 'https://videos.pexels.com/video-files/11698586/11698586-uhd_3840_2160_25fps.mp4', effect: 'petals', label: 'A lush garden stroll' },
+      Royal: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A grand mansion entrance' },
+      Lantern: { src: 'https://videos.pexels.com/video-files/6198382/6198382-uhd_4096_2160_25fps.mp4', effect: 'lantern-glow', label: 'A dramatic old-world walk' },
+      Pyramids: { src: 'https://videos.pexels.com/video-files/10199075/10199075-uhd_2560_1440_25fps.mp4', effect: 'desert-dust', label: 'A cinematic open-landscape walk' },
+      Imperial: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A timeless estate entrance' },
+      Twilight: { src: 'https://videos.pexels.com/video-files/27101217/12072256_2160_3840_30fps.mp4', effect: 'soft-glow', label: 'An intimate city-light walk' },
     };
-
-    const videoBride = {
-      Santorini: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'petals', label: 'The bride\'s elegant entrance' },
-      Toscana: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'soft-glow', label: 'A graceful garden entrance' },
-      Sakura: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'Walking through cherry blossoms' },
-      Deco: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'Entering in timeless elegance' },
-      Provence: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'Through lavender fields' },
-      Palma: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'Walking toward sunset' },
-      Bloom: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'petals', label: 'Among blooming roses' },
-      Royal: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A regal entrance' },
-      Lantern: { src: 'https://videos.pexels.com/video-files/5895536/5895536-uhd_3840_2160_25fps.mp4', effect: 'lantern-glow', label: 'Through ancient corridors' },
-      Pyramids: { src: 'https://videos.pexels.com/video-files/12797669/12797669-uhd_3840_2160_25fps.mp4', effect: 'desert-dust', label: 'Across golden sands' },
-      Imperial: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'In timeless splendor' },
-      Twilight: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'soft-glow', label: 'At twilight\'s glow' },
-    };
-
-    const videoGroom = {
-      Santorini: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'petals', label: 'The groom\'s distinguished entrance' },
-      Toscana: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'soft-glow', label: 'Standing among the vineyards' },
-      Sakura: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'Waiting beneath blossoms' },
-      Deco: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'In sophisticated style' },
-      Provence: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'By the lavender' },
-      Palma: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'Basking in warmth' },
-      Bloom: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'petals', label: 'In a garden paradise' },
-      Royal: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A royal presence' },
-      Lantern: { src: 'https://videos.pexels.com/video-files/5895536/5895536-uhd_3840_2160_25fps.mp4', effect: 'lantern-glow', label: 'In lamplight' },
-      Pyramids: { src: 'https://videos.pexels.com/video-files/12797669/12797669-uhd_3840_2160_25fps.mp4', effect: 'desert-dust', label: 'Under desert stars' },
-      Imperial: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'In imperial grace' },
-      Twilight: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'soft-glow', label: 'In twilight\'s embrace' },
-    };
-
-    const videoMap = role === 'bride' ? videoBride : (role === 'groom' ? videoGroom : videosCouple);
-    return videoMap[templateName] || videoMap.Santorini;
+    return videosCouple[templateName] || videosCouple.Santorini;
   };
 
   const finishEntrance = () => setEntranceActive(false);
@@ -523,7 +491,7 @@ export default function App() {
       venue: '', location: '', dressCode: '', story: '', note: '',
       photos: [], photoMediaKeys: [], musicMediaKey: '', envelopeColor: tmpl?.colors?.[0] || '#1c3552',
       accentColor: tmpl?.colors?.[1] || '#d4af37',
-      envelopeStyle: 'classic', invitationLanguage: 'en', initialsLanguage: 'en',
+      envelopeStyle: 'classic', stampStyle: 'wax-round', invitationLanguage: 'en', initialsLanguage: 'en',
       englishFont: 'Cormorant Garamond', englishInitialFont: 'Great Vibes', textColor: tmpl?.colors?.[2] || '#2f2635',
       arabicFont: 'Amiri', arabicInitialFont: 'Amiri',
       arabicBrideName: '', arabicGroomName: '', arabicWeddingTime: '',
@@ -551,7 +519,7 @@ export default function App() {
       venue: '', location: '', dressCode: '', story: '', note: '',
       photos: [], photoMediaKeys: [], musicMediaKey: '', envelopeColor: tmpl?.colors?.[0] || '#1c3552',
       accentColor: tmpl?.colors?.[1] || '#d4af37',
-      envelopeStyle: 'classic', invitationLanguage: 'en', initialsLanguage: 'en',
+      envelopeStyle: 'classic', stampStyle: 'wax-round', invitationLanguage: 'en', initialsLanguage: 'en',
       englishFont: 'Cormorant Garamond', englishInitialFont: 'Great Vibes',
       arabicFont: 'Amiri', arabicInitialFont: 'Amiri',
       arabicBrideName: '', arabicGroomName: '', arabicWeddingTime: '',
@@ -631,7 +599,7 @@ export default function App() {
       brideName: inv.bride, groomName: inv.groom, weddingDate: inv.date,
       weddingTime: '', venue: '', location: '', rsvp: '', dressCode: '', story: '',
       musicType: inv.data?.musicType || 'none', musicUrl: inv.data?.musicUrl || '', musicName: inv.data?.musicName || '',
-      envelopeStyle: inv.data?.envelopeStyle || 'classic', englishFont: inv.data?.englishFont || 'Cormorant Garamond', englishInitialFont: inv.data?.englishInitialFont || 'Great Vibes', arabicFont: inv.data?.arabicFont || 'Amiri', rsvpWhatsapp: inv.data?.rsvpWhatsapp || '', rsvpEmail: inv.data?.rsvpEmail || '', rsvpLabel: inv.data?.rsvpLabel || 'RSVP',
+      envelopeStyle: inv.data?.envelopeStyle || 'classic', stampStyle: inv.data?.stampStyle || 'wax-round', englishFont: inv.data?.englishFont || 'Cormorant Garamond', englishInitialFont: inv.data?.englishInitialFont || 'Great Vibes', arabicFont: inv.data?.arabicFont || 'Amiri', rsvpWhatsapp: inv.data?.rsvpWhatsapp || '', rsvpEmail: inv.data?.rsvpEmail || '', rsvpLabel: inv.data?.rsvpLabel || 'RSVP',
     });
     setPage('customize');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -742,16 +710,29 @@ export default function App() {
   };
 
   const envelopeStyles = [
-    { id: 'classic', label: 'Classic', description: 'Elegant folded envelope' },
-    { id: 'pointed', label: 'Pointed Flap', description: 'Sharp couture V-fold' },
-    { id: 'deep-v', label: 'Deep V', description: 'Dramatic deep triangular flap' },
-    { id: 'arch', label: 'Arch Flap', description: 'Soft rounded luxury flap' },
-    { id: 'double', label: 'Double Flap', description: 'Layered premium paper look' },
-    { id: 'arabic', label: 'Old Arabic', description: 'Ornamental arabesque geometric patterns' },
-    { id: 'ottoman', label: 'Ottoman Baroque', description: 'Vintage Turkish-inspired ornate style' },
-    { id: 'islamic', label: 'Islamic Geometric', description: 'Star patterns & sacred geometry' },
-    { id: 'turkish', label: 'Turkish Tulip', description: 'Ornate tulip & floral patterns' },
-    { id: 'floral', label: 'Floral Vintage', description: 'Soft botanical ornament' },
+    { id: 'classic', label: 'Classic Ivory', description: 'Clean couture folded paper' },
+    { id: 'pointed', label: 'Pointed Couture', description: 'Sharp V-fold with border detail' },
+    { id: 'deep-v', label: 'Deep V', description: 'Dramatic triangular flap' },
+    { id: 'arch', label: 'Soft Arch', description: 'Rounded luxury flap' },
+    { id: 'double', label: 'Double Layer', description: 'Layered premium paper finish' },
+    { id: 'arabic', label: 'Arabesque', description: 'Gilded repeating arabesque pattern' },
+    { id: 'ottoman', label: 'Ottoman', description: 'Ornate baroque inspired paper' },
+    { id: 'islamic', label: 'Geometric Star', description: 'Luxury star and geometry pattern' },
+    { id: 'turkish', label: 'Turkish Tulip', description: 'Elegant tulip-inspired pattern' },
+    { id: 'floral', label: 'Botanical', description: 'Vintage botanical corner ornament' },
+    { id: 'damask', label: 'Damask Gold', description: 'Rich repeating damask pattern' },
+    { id: 'velvet', label: 'Velvet Noir', description: 'Deep velvet texture with gold' },
+    { id: 'pearl', label: 'Pearl Emboss', description: 'Soft pearl paper with raised detail' },
+    { id: 'marble', label: 'Marble Vein', description: 'White marble paper with fine veins' },
+  ];
+
+  const stampStyles = [
+    { id: 'wax-round', label: 'Classic Wax', description: 'Round raised wax seal' },
+    { id: 'wax-scallop', label: 'Scalloped Wax', description: 'Hand-pressed scalloped seal' },
+    { id: 'gold-medallion', label: 'Gold Medallion', description: 'Polished couture crest' },
+    { id: 'square-crest', label: 'Square Crest', description: 'Modern engraved seal' },
+    { id: 'botanical', label: 'Botanical Seal', description: 'Leaf-framed monogram seal' },
+    { id: 'black-wax', label: 'Black Wax', description: 'Dark dramatic wax finish' },
   ];
 
   const englishFonts = ['Cormorant Garamond', 'Playfair Display', 'Cinzel', 'Libre Baskerville', 'Great Vibes', 'Bodoni Moda', 'DM Serif Display', 'EB Garamond', 'Marcellus', 'Prata', 'Lora', 'Allura', 'Parisienne', 'Alex Brush', 'Italianno', 'Tangerine', 'Sacramento'];
@@ -787,7 +768,7 @@ export default function App() {
           <div className="envelope-stage">
             <button className={`envelope envelope-${envelopeStyle}`} style={{ '--envelope': envelopeColor, '--accent': accentColor }} onClick={openEnvelope}>
               <div className="envelope-flap" />
-              <div className="envelope-seal" style={{ borderColor: accentColor, color: '#fff', fontFamily: `'${initialFont}', var(--serif)` }}>
+              <div className={`envelope-seal stamp-${d.stampStyle || 'wax-round'}`} style={{ borderColor: accentColor, color: '#fff', fontFamily: `'${initialFont}', var(--serif)` }}>
                 {Array.from(getCoupleInitials(d)).map((letter, index) => <span key={index} className="initial-letter">{letter}</span>)}
               </div>
               <div className="envelope-hint">Click the seal to open</div>
@@ -817,7 +798,7 @@ export default function App() {
             <div className="entrance-vignette" />
             <div className="entrance-overlay">
               <div className="entrance-caption">{entrance.label}</div>
-              <div className="entrance-couple-names" dir={invitationCopy.dir} style={{ fontFamily: `'${invitationFont}', var(--serif)` }}>{invitationCopy.brideName} <span>&amp;</span> {invitationCopy.groomName}</div>
+              <div className="entrance-couple-names" dir={invitationCopy.dir} style={{ fontFamily: `'${invitationFont}', var(--serif)` }}>{invitationCopy.groomName} <span>&amp;</span> {invitationCopy.brideName}</div>
               <div className="entrance-progress"><span /></div>
               {entrance.effect === 'petals' && <div className="petal-layer">{Array.from({length: 18}, (_, i) => <i key={i} style={{ '--i': i }} />)}</div>}
               <button type="button" className="entrance-skip" onClick={finishEntrance}>Skip to invitation</button>
@@ -834,9 +815,9 @@ export default function App() {
           borderBottom: `3px solid ${accentColor}`
         }}>
           <div className="invitation-kicker" style={{ color: accentColor }}>{invitationCopy.kicker}</div>
-          <div className="names" style={{ color: textColor }}>{invitationCopy.brideName}</div>
-          <div className="ampersand" style={{ color: accentColor }}>&</div>
           <div className="names" style={{ color: textColor }}>{invitationCopy.groomName}</div>
+          <div className="ampersand" style={{ color: accentColor }}>&</div>
+          <div className="names" style={{ color: textColor }}>{invitationCopy.brideName}</div>
           <div className="invitation-divider" style={{ background: accentColor }} />
           <div className="date" style={{ color: textColor }}>{invitationCopy.weddingDate}</div>
         </div>
@@ -1189,18 +1170,9 @@ export default function App() {
               />
             </div>
           </div>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Entrance Video Role 🎬</label>
-              <select 
-                value={entranceRole}
-                onChange={(e) => setEntranceRole(e.target.value)}
-              >
-                <option value="couple">Both - Couple's Entrance</option>
-                <option value="bride">Bride's Entrance</option>
-                <option value="groom">Groom's Entrance</option>
-              </select>
-            </div>
+          <div className="cinematic-entrance-note">
+            <strong>Luxury cinematic entrance 🎬</strong>
+            <span>Each theme now uses real bride-and-groom walking footage matched to the invitation style.</span>
           </div>
           <div className="form-row">
             <div className="form-group">
@@ -1395,6 +1367,19 @@ export default function App() {
           </div>
 
           <div className="form-group">
+            <label>Initial stamp design</label>
+            <div className="stamp-style-grid">
+              {stampStyles.map((stamp) => (
+                <button type="button" key={stamp.id} className={`stamp-style-option ${customizationData?.stampStyle === stamp.id ? 'active' : ''}`} onClick={() => setCustomizationData({ ...customizationData, stampStyle: stamp.id })}>
+                  <span className={`mini-stamp mini-stamp-${stamp.id}`}>{getCoupleInitials(customizationData || {})}</span>
+                  <strong>{stamp.label}</strong>
+                  <small>{stamp.description}</small>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="form-group">
             <label>Photos (up to 6)</label>
             <input type="file" accept="image/*" multiple onChange={(e) => addPhotoFiles(e.target.files)} />
             {(customizationData?.photos || []).length > 0 && (
@@ -1543,7 +1528,7 @@ export default function App() {
             <span>${selectedTemplate?.price}</span>
           </div>
           <div className="summary-row">
-            <span>{customizationData?.brideName}{customizationData?.groomName}</span>
+            <span>{customizationData?.groomName} & {customizationData?.brideName}</span>
             <span>{customizationData?.weddingDate}</span>
           </div>
           <div className="summary-row total">
