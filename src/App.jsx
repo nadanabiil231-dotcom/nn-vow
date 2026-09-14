@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   Heart, Menu, X, ChevronRight, Star, Users, CheckCircle, Globe,
   LogOut, Plus, Edit, Eye, Trash2, Settings, BarChart3, Package,
-  CreditCard, Copy, Check, Mail, Lock, ArrowLeft, Save, DollarSign,
+  CreditCard, Copy, Check, Mail, Lock, ArrowLeft, Save, DollarSign, MessageCircle, Phone,
 } from 'lucide-react';
 import {
   ADMIN_EMAIL, DEFAULT_PAYMENT_SETTINGS, SAMPLE_TEMPLATES,
@@ -94,6 +94,7 @@ export default function App() {
 
   // Contact form
   const [contactSent, setContactSent] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', phone: '', email: '', message: '' });
 
   // FAQ
   const [openFaq, setOpenFaq] = useState(null);
@@ -640,8 +641,21 @@ export default function App() {
   // ==================== CONTACT FORM ====================
   const handleContactSubmit = (e) => {
     e.preventDefault();
+    const whatsappNumber = '201117141072';
+    const whatsappMessage = [
+      '💌 New message from N&N Vow website',
+      '',
+      `Name: ${contactForm.name}`,
+      `Phone: ${contactForm.phone}`,
+      `Email: ${contactForm.email || 'Not provided'}`,
+      '',
+      `Message: ${contactForm.message}`,
+    ].join('\n');
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     setContactSent(true);
-    setTimeout(() => setContactSent(false), 4000);
+    setContactForm({ name: '', phone: '', email: '', message: '' });
+    setTimeout(() => setContactSent(false), 5000);
   };
 
   // ==================== FILTERED TEMPLATES ====================
@@ -668,6 +682,8 @@ export default function App() {
     (data?.invitationLanguage || 'en') === 'ar'
       ? (data?.arabicFont || 'Amiri')
       : (data?.englishFont || 'Cormorant Garamond');
+
+
 
   const getInitialFont = (data) =>
     (data?.initialsLanguage || 'en') === 'ar'
@@ -2045,26 +2061,33 @@ export default function App() {
         {contactSent && (
           <div className="alert alert-success" style={{ marginBottom: '1.5rem' }}>
             <CheckCircle size={16} style={{ display: 'inline', marginRight: '6px' }} />
-            Message sent! We'll get back to you soon.
+            WhatsApp opened with your message ready to send.
           </div>
         )}
         <div className="form-row">
           <div className="form-group">
             <label>Name</label>
-            <input type="text" required placeholder={invitationCopy.yourName} />
+            <input type="text" required value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} placeholder={invitationCopy.yourName} />
           </div>
           <div className="form-group">
-            <label>Email</label>
-            <input type="email" required placeholder="your@email.com" />
+            <label>Phone</label>
+            <input type="tel" required value={contactForm.phone} onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} placeholder="Your phone number" />
           </div>
         </div>
         <div className="form-group">
+          <label>Email <span style={{ opacity: 0.6 }}>(optional)</span></label>
+          <input type="email" value={contactForm.email} onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} placeholder="your@email.com" />
+        </div>
+        <div className="form-group">
           <label>Message</label>
-          <textarea rows="5" required placeholder="How can we help?" />
+          <textarea rows="5" required value={contactForm.message} onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} placeholder="How can we help?" />
         </div>
         <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-          <Mail size={18} /> Send Message
+          <MessageCircle size={18} /> Send via WhatsApp
         </button>
+        <a href="tel:+201117141072" className="btn btn-secondary" style={{ width: '100%', marginTop: '0.75rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+          <Phone size={18} /> Call us
+        </a>
       </form>
     </section>
   );
