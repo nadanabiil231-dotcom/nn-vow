@@ -414,16 +414,9 @@ export default function App() {
   };
 
   const openEnvelope = () => {
-  setEnvelopeOpen(true);
-  setEntranceActive(true);
-  if (customizationData?.musicType === 'upload' && customizationData?.musicUrl) {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.volume = 1;
-      audio.play().catch(() => {});
-    }
-  }
-};
+    setEnvelopeOpen(true);
+    setEntranceActive(true);
+  };
 
   const getEntranceVideo = (templateName, role = 'couple') => {
     // Luxury real-couple walking footage from Pexels. Every theme uses bride + groom together.
@@ -887,7 +880,7 @@ export default function App() {
             <div className="invitation-rsvp">
               <div className="detail-label">{invitationCopy.rsvpLabel}</div>
               <p>{invitationCopy.rsvpPrompt}</p>
-              <input className="rsvp-input" value={rsvpGuestName} onChange={(e) => setRsvpGuestName(e.target.value)} placeholder="Your name" />
+              <input className="rsvp-input" value={rsvpGuestName} onChange={(e) => setRsvpGuestName(e.target.value)} placeholder={invitationCopy.yourName} />
               <select className="rsvp-input" value={rsvpAttendance} onChange={(e) => setRsvpAttendance(e.target.value)}>
                 <option>{invitationCopy.yes}</option><option>{invitationCopy.no}</option>
               </select>
@@ -2074,7 +2067,7 @@ export default function App() {
         <div className="form-row">
           <div className="form-group">
             <label>Name</label>
-            <input type="text" required value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} placeholder="Your name" />
+            <input type="text" required value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} placeholder={invitationCopy.yourName} />
           </div>
           <div className="form-group">
             <label>Phone</label>
@@ -2196,5 +2189,4 @@ export default function App() {
     </div>
   );
 }
-
 
