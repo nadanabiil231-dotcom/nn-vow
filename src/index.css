@@ -2392,3 +2392,1131 @@ input, textarea, select {
 }
 
 /* ========================================================= */
+/* =========================================================
+   N&N VOW LUXURY SCRATCH COUNTDOWN
+   ========================================================= */
+
+.scratch-countdown-card {
+  position: relative;
+  width: min(100%, 720px);
+  margin: 2rem auto;
+  padding: 2rem 1.5rem 1.25rem;
+  border: 1px solid;
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.9), transparent 45%),
+    linear-gradient(135deg, #fffdf8 0%, #f5efe3 50%, #fffdf8 100%);
+  box-shadow:
+    0 18px 50px rgba(30, 20, 10, 0.12),
+    inset 0 0 0 1px rgba(255,255,255,0.8);
+  overflow: hidden;
+}
+
+.scratch-countdown-card::before,
+.scratch-countdown-card::after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border: 1px solid currentColor;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.scratch-countdown-card::before {
+  top: 12px;
+  left: 12px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.scratch-countdown-card::after {
+  right: 12px;
+  bottom: 12px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.scratch-countdown-heading {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.35rem;
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scratch-countdown-reveal {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  border: 1px solid rgba(180, 150, 90, 0.35);
+  background: rgba(255,255,255,0.72);
+  overflow: hidden;
+}
+
+.countdown-units {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.65rem, 3vw, 2rem);
+  padding: 1rem;
+}
+
+.countdown-unit {
+  min-width: 80px;
+  text-align: center;
+}
+
+.countdown-unit-number {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.countdown-unit-label {
+  margin-top: 0.65rem;
+  font-family: Arial, sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  opacity: 0.62;
+}
+
+.countdown-divider {
+  align-self: center;
+  margin-top: -1.2rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  opacity: 0.55;
+}
+
+.scratch-countdown-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scratch-countdown-footer {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  min-height: 28px;
+  font-family: Arial, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.68;
+}
+
+.scratch-reset-btn {
+  border: 0;
+  background: transparent;
+  padding: 0.2rem 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.scratch-reset-btn:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .scratch-countdown-card {
+    margin: 1.5rem auto;
+    padding: 1.4rem 0.8rem 1rem;
+  }
+
+  .scratch-countdown-reveal {
+    min-height: 125px;
+  }
+
+  .countdown-units {
+    gap: 0.35rem;
+    padding: 0.5rem;
+  }
+
+  .countdown-unit {
+    min-width: 58px;
+  }
+
+  .countdown-unit-number {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .countdown-unit-label {
+    margin-top: 0.45rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+  }
+
+  .countdown-divider {
+    font-size: 1.35rem;
+  }
+
+  .scratch-countdown-footer {
+    font-size: 0.55rem;
+  }
+}
+
+/* =========================================================
+   END N&N VOW LUXURY SCRATCH COUNTDOWN
+   ========================================================= */
+/* N&N VOW — SANTORINI INSIDE DESIGN */
+.invitation-theme-santorini {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(0, 102, 204, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 92%, rgba(246, 185, 157, 0.10), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbfd 52%, #ffffff 100%) !important;
+  border: 1px solid rgba(0, 102, 204, 0.16);
+  box-shadow: 0 24px 70px rgba(0, 60, 120, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-santorini::before {
+  content: "❧";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(0, 102, 204, 0.28);
+  font-size: 30px;
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+
+.invitation-theme-santorini::after {
+  content: "❧";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(0, 102, 204, 0.28);
+  font-size: 30px;
+  transform: rotate(162deg);
+  pointer-events: none;
+}
+
+.invitation-theme-santorini .invitation-hero {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.98), rgba(239,247,252,0.96)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,102,204,0.025) 0px,
+      rgba(0,102,204,0.025) 1px,
+      transparent 1px,
+      transparent 7px
+    ) !important;
+  border-bottom: 3px solid #0066CC !important;
+  box-shadow: inset 0 -18px 40px rgba(0, 102, 204, 0.035);
+}
+
+.invitation-theme-santorini .invitation-kicker {
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #0066CC !important;
+}
+
+.invitation-theme-santorini .names {
+  color: #164f78 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.invitation-theme-santorini .ampersand {
+  color: #0066CC !important;
+}
+
+.invitation-theme-santorini .invitation-divider {
+  height: 2px !important;
+  border-radius: 999px;
+  opacity: 0.72;
+}
+
+.invitation-theme-santorini .invitation-details {
+  background: rgba(255,255,255,0.72);
+  border-left: 1px solid rgba(0,102,204,0.10);
+  border-right: 1px solid rgba(0,102,204,0.10);
+}
+
+.invitation-theme-santorini .detail-row {
+  border-bottom-color: rgba(0,102,204,0.12) !important;
+}
+
+.invitation-theme-santorini .detail-label {
+  color: #0066CC !important;
+  letter-spacing: 0.12em;
+}
+
+.invitation-theme-santorini .detail-value {
+  color: #24485f;
+}
+
+.invitation-theme-santorini .scratch-countdown-card {
+  background: linear-gradient(145deg, #ffffff, #f1f8fc) !important;
+  border: 1px solid rgba(0,102,204,0.28) !important;
+  box-shadow: 0 12px 35px rgba(0,102,204,0.09);
+}
+
+.invitation-theme-santorini .scratch-countdown-heading {
+  color: #0066CC !important;
+  letter-spacing: 0.18em;
+}
+
+.invitation-theme-santorini .countdown-unit-number {
+  color: #0066CC !important;
+}
+
+.invitation-theme-santorini .invitation-note {
+  background: rgba(255,255,255,0.82);
+  border-color: rgba(0,102,204,0.32) !important;
+  box-shadow: 0 8px 24px rgba(0,60,120,0.06);
+}
+
+.invitation-theme-santorini .btn-secondary {
+  border-color: #0066CC !important;
+  color: #0066CC !important;
+}
+
+.invitation-theme-santorini .date {
+  color: #164f78 !important;
+  letter-spacing: 0.16em;
+}
+
+/* N&N VOW — SAKURA INSIDE DESIGN */
+.invitation-theme-sakura {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(218, 165, 165, 0.16), transparent 28%),
+    radial-gradient(circle at 92% 88%, rgba(245, 210, 220, 0.20), transparent 30%),
+    linear-gradient(180deg, #fffdfd 0%, #fff7f9 50%, #ffffff 100%) !important;
+  border: 1px solid rgba(210, 145, 160, 0.20);
+  box-shadow: 0 24px 70px rgba(120, 55, 70, 0.10);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-sakura::before {
+  content: "❀";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(190, 105, 125, 0.32);
+  font-size: 28px;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.invitation-theme-sakura::after {
+  content: "❀";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(190, 105, 125, 0.32);
+  font-size: 28px;
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+
+.invitation-theme-sakura .invitation-hero {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,242,247,0.96)),
+    radial-gradient(circle at 50% 0%, rgba(218,165,165,0.10), transparent 55%) !important;
+  border-bottom: 2px solid #d4a5b0 !important;
+  box-shadow: inset 0 -20px 45px rgba(190, 105, 125, 0.035);
+}
+
+.invitation-theme-sakura .invitation-kicker {
+  color: #b56f82 !important;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-sakura .names {
+  color: #754553 !important;
+}
+
+.invitation-theme-sakura .ampersand {
+  color: #c48799 !important;
+}
+
+.invitation-theme-sakura .invitation-divider {
+  height: 1px !important;
+  background: #d4a5b0 !important;
+  opacity: 0.75;
+}
+
+.invitation-theme-sakura .invitation-details {
+  background: rgba(255,255,255,0.68);
+  border-left: 1px solid rgba(190,105,125,0.09);
+  border-right: 1px solid rgba(190,105,125,0.09);
+}
+
+.invitation-theme-sakura .detail-row {
+  border-bottom-color: rgba(190,105,125,0.12) !important;
+}
+
+.invitation-theme-sakura .detail-label {
+  color: #b56f82 !important;
+  letter-spacing: 0.10em;
+}
+
+.invitation-theme-sakura .detail-value {
+  color: #68434d;
+}
+
+.invitation-theme-sakura .scratch-countdown-card {
+  background: linear-gradient(145deg, #ffffff, #fff4f7) !important;
+  border: 1px solid rgba(190,105,125,0.28) !important;
+  box-shadow: 0 12px 35px rgba(150,70,90,0.08);
+}
+
+.invitation-theme-sakura .scratch-countdown-heading {
+  color: #b56f82 !important;
+  letter-spacing: 0.14em;
+}
+
+.invitation-theme-sakura .countdown-unit-number {
+  color: #b56f82 !important;
+}
+
+.invitation-theme-sakura .invitation-note {
+  background: rgba(255,250,252,0.86);
+  border-color: rgba(190,105,125,0.28) !important;
+  box-shadow: 0 8px 24px rgba(120,55,70,0.05);
+}
+
+.invitation-theme-sakura .btn-secondary {
+  border-color: #b56f82 !important;
+  color: #b56f82 !important;
+}
+
+.invitation-theme-sakura .date {
+  color: #754553 !important;
+  letter-spacing: 0.12em;
+}
+
+/* N&N VOW — DECO INSIDE DESIGN */
+.invitation-theme-deco {
+  background:
+    linear-gradient(135deg, rgba(10,10,10,0.98), rgba(31,25,16,0.98)),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(212,175,55,0.045) 19px,
+      rgba(212,175,55,0.045) 20px
+    ) !important;
+  border: 1px solid rgba(212,175,55,0.38);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-deco::before {
+  content: "◆";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(212,175,55,0.65);
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.invitation-theme-deco::after {
+  content: "◆";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(212,175,55,0.65);
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.invitation-theme-deco .invitation-hero {
+  background:
+    linear-gradient(135deg, #111111, #292117 52%, #0d0d0d) !important;
+  border-bottom: 2px solid #d4af37 !important;
+  box-shadow:
+    inset 0 -25px 50px rgba(212,175,55,0.07),
+    inset 0 25px 50px rgba(0,0,0,0.35);
+}
+
+.invitation-theme-deco .invitation-kicker {
+  color: #d4af37 !important;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-deco .names {
+  color: #f5e7bd !important;
+  text-shadow: 0 2px 12px rgba(212,175,55,0.18);
+}
+
+.invitation-theme-deco .ampersand {
+  color: #d4af37 !important;
+}
+
+.invitation-theme-deco .invitation-divider {
+  height: 2px !important;
+  background: #d4af37 !important;
+  opacity: 0.78;
+  max-width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invitation-theme-deco .date {
+  color: #f5e7bd !important;
+  letter-spacing: 0.22em;
+}
+
+.invitation-theme-deco .invitation-details {
+  background: rgba(8,8,8,0.72);
+  border-left: 1px solid rgba(212,175,55,0.18);
+  border-right: 1px solid rgba(212,175,55,0.18);
+}
+
+.invitation-theme-deco .detail-row {
+  border-bottom-color: rgba(212,175,55,0.20) !important;
+}
+
+.invitation-theme-deco .detail-label {
+  color: #d4af37 !important;
+  letter-spacing: 0.14em;
+}
+
+.invitation-theme-deco .detail-value {
+  color: #eee3c5;
+}
+
+.invitation-theme-deco .scratch-countdown-card {
+  background:
+    linear-gradient(145deg, #111111, #292117) !important;
+  border: 1px solid rgba(212,175,55,0.55) !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.28);
+}
+
+.invitation-theme-deco .scratch-countdown-heading {
+  color: #d4af37 !important;
+  letter-spacing: 0.20em;
+}
+
+.invitation-theme-deco .countdown-unit-number {
+  color: #d4af37 !important;
+}
+
+.invitation-theme-deco .invitation-note {
+  background: rgba(20,18,14,0.90);
+  border-color: rgba(212,175,55,0.38) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+}
+
+.invitation-theme-deco .btn-secondary {
+  border-color: #d4af37 !important;
+  color: #d4af37 !important;
+}
+
+
+/* N&N VOW — PALMA INSIDE DESIGN */
+.invitation-theme-palma {
+  background:
+    radial-gradient(circle at 10% 8%, rgba(194, 116, 76, 0.13), transparent 28%),
+    radial-gradient(circle at 90% 90%, rgba(214, 166, 118, 0.16), transparent 30%),
+    linear-gradient(180deg, #fffaf4 0%, #f7eee3 52%, #fffaf5 100%) !important;
+  border: 1px solid rgba(177, 111, 72, 0.20);
+  box-shadow: 0 25px 70px rgba(120, 70, 40, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-palma::before {
+  content: "✦";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(177, 111, 72, 0.35);
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.invitation-theme-palma::after {
+  content: "✦";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(177, 111, 72, 0.35);
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.invitation-theme-palma .invitation-hero {
+  background:
+    linear-gradient(145deg, #fffaf4, #f1dfcc 58%, #fff8f0) !important;
+  border-bottom: 2px solid #b86f4b !important;
+  box-shadow: inset 0 -24px 48px rgba(184, 111, 75, 0.07);
+}
+
+.invitation-theme-palma .invitation-kicker {
+  color: #a65f42 !important;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-palma .names {
+  color: #704638 !important;
+}
+
+.invitation-theme-palma .ampersand {
+  color: #b86f4b !important;
+}
+
+.invitation-theme-palma .invitation-divider {
+  height: 2px !important;
+  background: #b86f4b !important;
+  opacity: 0.68;
+}
+
+.invitation-theme-palma .date {
+  color: #704638 !important;
+  letter-spacing: 0.18em;
+}
+
+.invitation-theme-palma .invitation-details {
+  background: rgba(255,250,244,0.78);
+  border-left: 1px solid rgba(184,111,75,0.12);
+  border-right: 1px solid rgba(184,111,75,0.12);
+}
+
+.invitation-theme-palma .detail-row {
+  border-bottom-color: rgba(184,111,75,0.15) !important;
+}
+
+.invitation-theme-palma .detail-label {
+  color: #a65f42 !important;
+  letter-spacing: 0.11em;
+}
+
+.invitation-theme-palma .detail-value {
+  color: #63483d;
+}
+
+.invitation-theme-palma .scratch-countdown-card {
+  background: linear-gradient(145deg, #fffaf4, #f3e1d0) !important;
+  border: 1px solid rgba(184,111,75,0.32) !important;
+  box-shadow: 0 12px 35px rgba(120,70,40,0.08);
+}
+
+.invitation-theme-palma .scratch-countdown-heading {
+  color: #a65f42 !important;
+  letter-spacing: 0.16em;
+}
+
+.invitation-theme-palma .countdown-unit-number {
+  color: #a65f42 !important;
+}
+
+.invitation-theme-palma .invitation-note {
+  background: rgba(255,250,244,0.88);
+  border-color: rgba(184,111,75,0.30) !important;
+  box-shadow: 0 8px 24px rgba(120,70,40,0.06);
+}
+
+.invitation-theme-palma .btn-secondary {
+  border-color: #b86f4b !important;
+  color: #a65f42 !important;
+}
+
+
+/* N&N VOW — ROYAL INSIDE DESIGN */
+.invitation-theme-royal {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212,175,55,0.10), transparent 35%),
+    linear-gradient(180deg, #fffdf7 0%, #f5eee0 50%, #fffdf8 100%) !important;
+  border: 1px solid rgba(170,135,55,0.30);
+  box-shadow: 0 28px 80px rgba(100,75,30,0.16);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-royal::before {
+  content: "♕";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(170,135,55,0.32);
+  font-size: 27px;
+  pointer-events: none;
+}
+
+.invitation-theme-royal::after {
+  content: "♕";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(170,135,55,0.32);
+  font-size: 27px;
+  pointer-events: none;
+}
+
+.invitation-theme-royal .invitation-hero {
+  background:
+    linear-gradient(135deg, #fffdf8, #f3ead7 50%, #fffdf8) !important;
+  border-bottom: 3px double #b89542 !important;
+  box-shadow:
+    inset 0 -25px 50px rgba(170,135,55,0.06),
+    inset 0 20px 45px rgba(255,255,255,0.8);
+}
+
+.invitation-theme-royal .invitation-kicker {
+  color: #9a7930 !important;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-royal .names {
+  color: #594728 !important;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+.invitation-theme-royal .ampersand {
+  color: #b89542 !important;
+}
+
+.invitation-theme-royal .invitation-divider {
+  height: 2px !important;
+  background: #b89542 !important;
+  opacity: 0.78;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invitation-theme-royal .date {
+  color: #80652e !important;
+  letter-spacing: 0.20em;
+}
+
+.invitation-theme-royal .invitation-details {
+  background: rgba(255,253,247,0.80);
+  border-left: 2px solid rgba(184,149,66,0.14);
+  border-right: 2px solid rgba(184,149,66,0.14);
+}
+
+.invitation-theme-royal .detail-row {
+  border-bottom-color: rgba(184,149,66,0.20) !important;
+}
+
+.invitation-theme-royal .detail-label {
+  color: #9a7930 !important;
+  letter-spacing: 0.14em;
+}
+
+.invitation-theme-royal .detail-value {
+  color: #55452d;
+}
+
+.invitation-theme-royal .scratch-countdown-card {
+  background: linear-gradient(145deg, #fffdf8, #f1e6cf) !important;
+  border: 1px solid rgba(184,149,66,0.45) !important;
+  box-shadow: 0 15px 40px rgba(100,75,30,0.10);
+}
+
+.invitation-theme-royal .scratch-countdown-heading {
+  color: #9a7930 !important;
+  letter-spacing: 0.18em;
+}
+
+.invitation-theme-royal .countdown-unit-number {
+  color: #9a7930 !important;
+}
+
+.invitation-theme-royal .invitation-note {
+  background: rgba(255,253,247,0.92);
+  border-color: rgba(184,149,66,0.36) !important;
+  box-shadow: 0 10px 28px rgba(100,75,30,0.07);
+}
+
+.invitation-theme-royal .btn-secondary {
+  border-color: #b89542 !important;
+  color: #80652e !important;
+}
+
+
+/* N&N VOW — LANTERN INSIDE DESIGN */
+.invitation-theme-lantern {
+  background:
+    radial-gradient(circle at 50% 8%, rgba(224,158,75,0.16), transparent 32%),
+    radial-gradient(circle at 15% 85%, rgba(224,158,75,0.08), transparent 28%),
+    linear-gradient(180deg, #0d1724 0%, #121b28 48%, #080f18 100%) !important;
+  border: 1px solid rgba(224,158,75,0.35);
+  box-shadow: 0 28px 85px rgba(0,0,0,0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-lantern::before {
+  content: "✦";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(224,158,75,0.65);
+  font-size: 20px;
+  text-shadow: 0 0 14px rgba(224,158,75,0.45);
+  pointer-events: none;
+}
+
+.invitation-theme-lantern::after {
+  content: "✦";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(224,158,75,0.65);
+  font-size: 20px;
+  text-shadow: 0 0 14px rgba(224,158,75,0.45);
+  pointer-events: none;
+}
+
+.invitation-theme-lantern .invitation-hero {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224,158,75,0.12), transparent 55%),
+    linear-gradient(145deg, #101d2c, #172333 55%, #0b131f) !important;
+  border-bottom: 2px solid #d99b4a !important;
+  box-shadow:
+    inset 0 -30px 60px rgba(224,158,75,0.06),
+    inset 0 15px 45px rgba(255,255,255,0.02);
+}
+
+.invitation-theme-lantern .invitation-kicker {
+  color: #e0a45d !important;
+  letter-spacing: 0.27em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-lantern .names {
+  color: #f7ead1 !important;
+  text-shadow: 0 0 18px rgba(224,158,75,0.14);
+}
+
+.invitation-theme-lantern .ampersand {
+  color: #e0a45d !important;
+}
+
+.invitation-theme-lantern .invitation-divider {
+  height: 1px !important;
+  background: #d99b4a !important;
+  opacity: 0.72;
+}
+
+.invitation-theme-lantern .date {
+  color: #edcf9e !important;
+  letter-spacing: 0.18em;
+}
+
+.invitation-theme-lantern .invitation-details {
+  background: rgba(9,17,27,0.74);
+  border-left: 1px solid rgba(224,158,75,0.14);
+  border-right: 1px solid rgba(224,158,75,0.14);
+}
+
+.invitation-theme-lantern .detail-row {
+  border-bottom-color: rgba(224,158,75,0.17) !important;
+}
+
+.invitation-theme-lantern .detail-label {
+  color: #e0a45d !important;
+  letter-spacing: 0.12em;
+}
+
+.invitation-theme-lantern .detail-value {
+  color: #e9dcc5;
+}
+
+.invitation-theme-lantern .scratch-countdown-card {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224,158,75,0.12), transparent 60%),
+    linear-gradient(145deg, #111e2d, #0a121e) !important;
+  border: 1px solid rgba(224,158,75,0.45) !important;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.30);
+}
+
+.invitation-theme-lantern .scratch-countdown-heading {
+  color: #e0a45d !important;
+  letter-spacing: 0.18em;
+}
+
+.invitation-theme-lantern .countdown-unit-number {
+  color: #e0a45d !important;
+  text-shadow: 0 0 15px rgba(224,158,75,0.18);
+}
+
+.invitation-theme-lantern .invitation-note {
+  background: rgba(15,25,37,0.86);
+  border-color: rgba(224,158,75,0.34) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.invitation-theme-lantern .btn-secondary {
+  border-color: #d99b4a !important;
+  color: #e0a45d !important;
+}
+
+
+/* N&N VOW — PYRAMIDS INSIDE DESIGN */
+.invitation-theme-pyramids {
+  background:
+    radial-gradient(circle at 50% 5%, rgba(218,172,91,0.18), transparent 34%),
+    radial-gradient(circle at 15% 80%, rgba(191,137,62,0.10), transparent 28%),
+    linear-gradient(180deg, #17120d 0%, #302315 48%, #17110b 100%) !important;
+  border: 1px solid rgba(218,172,91,0.42);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.48);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-pyramids::before {
+  content: "✦  ·  ✦";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(230,193,123,0.55);
+  font-size: 14px;
+  letter-spacing: 0.45em;
+  pointer-events: none;
+}
+
+.invitation-theme-pyramids::after {
+  content: "△";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(218,172,91,0.38);
+  font-size: 30px;
+  pointer-events: none;
+}
+
+.invitation-theme-pyramids .invitation-hero {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(218,172,91,0.14), transparent 55%),
+    linear-gradient(145deg, #20170e, #3a2a18 52%, #17100a) !important;
+  border-bottom: 2px solid #d8ac5b !important;
+  box-shadow:
+    inset 0 -30px 60px rgba(218,172,91,0.07),
+    inset 0 15px 45px rgba(0,0,0,0.28);
+}
+
+.invitation-theme-pyramids .invitation-kicker {
+  color: #e0bc7a !important;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-pyramids .names {
+  color: #f4e2bb !important;
+  text-shadow: 0 0 18px rgba(218,172,91,0.16);
+}
+
+.invitation-theme-pyramids .ampersand {
+  color: #d8ac5b !important;
+}
+
+.invitation-theme-pyramids .invitation-divider {
+  height: 2px !important;
+  background: #d8ac5b !important;
+  opacity: 0.76;
+}
+
+.invitation-theme-pyramids .date {
+  color: #e5c98e !important;
+  letter-spacing: 0.20em;
+}
+
+.invitation-theme-pyramids .invitation-details {
+  background: rgba(22,16,10,0.76);
+  border-left: 1px solid rgba(218,172,91,0.16);
+  border-right: 1px solid rgba(218,172,91,0.16);
+}
+
+.invitation-theme-pyramids .detail-row {
+  border-bottom-color: rgba(218,172,91,0.20) !important;
+}
+
+.invitation-theme-pyramids .detail-label {
+  color: #d8ac5b !important;
+  letter-spacing: 0.13em;
+}
+
+.invitation-theme-pyramids .detail-value {
+  color: #ead8b5;
+}
+
+.invitation-theme-pyramids .scratch-countdown-card {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(218,172,91,0.13), transparent 60%),
+    linear-gradient(145deg, #302214, #17100a) !important;
+  border: 1px solid rgba(218,172,91,0.48) !important;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.32);
+}
+
+.invitation-theme-pyramids .scratch-countdown-heading {
+  color: #d8ac5b !important;
+  letter-spacing: 0.18em;
+}
+
+.invitation-theme-pyramids .countdown-unit-number {
+  color: #e0bc7a !important;
+  text-shadow: 0 0 16px rgba(218,172,91,0.18);
+}
+
+.invitation-theme-pyramids .invitation-note {
+  background: rgba(30,21,13,0.90);
+  border-color: rgba(218,172,91,0.36) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+}
+
+.invitation-theme-pyramids .btn-secondary {
+  border-color: #d8ac5b !important;
+  color: #e0bc7a !important;
+}
+
+
+/* N&N VOW — IMPERIAL INSIDE DESIGN */
+.invitation-theme-imperial {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(184,149,66,0.13), transparent 34%),
+    linear-gradient(180deg, #fffdf8 0%, #eee6d6 48%, #fffdf8 100%) !important;
+  border: 2px solid rgba(184,149,66,0.32);
+  box-shadow:
+    0 30px 85px rgba(85,65,30,0.17),
+    inset 0 0 0 8px rgba(184,149,66,0.045);
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation-theme-imperial::before {
+  content: "❦";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  color: rgba(145,112,42,0.42);
+  font-size: 28px;
+  pointer-events: none;
+}
+
+.invitation-theme-imperial::after {
+  content: "❦";
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  color: rgba(145,112,42,0.42);
+  font-size: 28px;
+  transform: scaleX(-1);
+  pointer-events: none;
+}
+
+.invitation-theme-imperial .invitation-hero {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(184,149,66,0.12), transparent 58%),
+    linear-gradient(145deg, #fffefa, #eee5d3 50%, #fffefa) !important;
+  border-bottom: 3px double #b89542 !important;
+  box-shadow:
+    inset 0 -30px 60px rgba(184,149,66,0.06),
+    inset 0 20px 50px rgba(255,255,255,0.85);
+}
+
+.invitation-theme-imperial .invitation-kicker {
+  color: #8d6e2e !important;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+}
+
+.invitation-theme-imperial .names {
+  color: #514329 !important;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+.invitation-theme-imperial .ampersand {
+  color: #b89542 !important;
+}
+
+.invitation-theme-imperial .invitation-divider {
+  height: 2px !important;
+  background: #b89542 !important;
+  opacity: 0.72;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invitation-theme-imperial .date {
+  color: #78602c !important;
+  letter-spacing: 0.22em;
+}
+
+.invitation-theme-imperial .invitation-details {
+  background: rgba(255,253,247,0.84);
+  border-left: 2px solid rgba(184,149,66,0.16);
+  border-right: 2px solid rgba(184,149,66,0.16);
+}
+
+.invitation-theme-imperial .detail-row {
+  border-bottom-color: rgba(184,149,66,0.20) !important;
+}
+
+.invitation-theme-imperial .detail-label {
+  color: #8d6e2e !important;
+  letter-spacing: 0.15em;
+}
+
+.invitation-theme-imperial .detail-value {
+  color: #514735;
+}
+
+.invitation-theme-imperial .scratch-countdown-card {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(184,149,66,0.10), transparent 60%),
+    linear-gradient(145deg, #fffefa, #eee4d0) !important;
+  border: 1px solid rgba(184,149,66,0.46) !important;
+  box-shadow: 0 15px 42px rgba(85,65,30,0.10);
+}
+
+.invitation-theme-imperial .scratch-countdown-heading {
+  color: #8d6e2e !important;
+  letter-spacing: 0.20em;
+}
+
+.invitation-theme-imperial .countdown-unit-number {
+  color: #9a7830 !important;
+}
+
+.invitation-theme-imperial .invitation-note {
+  background: rgba(255,253,247,0.94);
+  border-color: rgba(184,149,66,0.36) !important;
+  box-shadow: 0 10px 30px rgba(85,65,30,0.07);
+}
+
+.invitation-theme-imperial .btn-secondary {
+  border-color: #b89542 !important;
+  color: #80642d !important;
+}
+

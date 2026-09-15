@@ -71,6 +71,84 @@ export default function App() {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [customizationData, setCustomizationData] = useState(null);
+  const [countdownRevealed, setCountdownRevealed] = useState(false);
+  const [scratchProgress, setScratchProgress] = useState(0);
+  const [liveCountdown, setLiveCountdown] = useState({ days: 0, hours: 0, minutes: 0 });
+  const scratchCanvasRef = useRef(null);
+  /* =====================================================
+     N&N VOW LIVE COUNTDOWN ENGINE
+     ===================================================== */
+
+  useEffect(() => {
+    const data = customizationData || {};
+
+    if (!data.weddingDate) {
+      setLiveCountdown({ days: 0, hours: 0, minutes: 0 });
+      return;
+    }
+
+    const timeValue = String(data.weddingTime || '00:00').trim();
+
+    let hour = 0;
+    let minute = 0;
+
+    const timeMatch = timeValue.match(/^(\d{1,2}):(\d{2})(?:\s*(AM|PM))?$/i);
+
+    if (timeMatch) {
+      hour = parseInt(timeMatch[1], 10);
+      minute = parseInt(timeMatch[2], 10);
+
+      if (timeMatch[3]) {
+        const suffix = timeMatch[3].toUpperCase();
+
+        if (suffix === 'PM' && hour < 12) {
+          hour += 12;
+        }
+
+        if (suffix === 'AM' && hour === 12) {
+          hour = 0;
+        }
+      }
+    }
+
+    const target = new Date(
+      `${data.weddingDate}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`
+    );
+
+    if (Number.isNaN(target.getTime())) {
+      setLiveCountdown({ days: 0, hours: 0, minutes: 0 });
+      return;
+    }
+
+    const updateCountdown = () => {
+      const difference = Math.max(0, target.getTime() - Date.now());
+      const totalMinutes = Math.floor(difference / 60000);
+
+      const days = Math.floor(totalMinutes / 1440);
+      const hours = Math.floor((totalMinutes % 1440) / 60);
+      const minutes = totalMinutes % 60;
+
+      setLiveCountdown({
+        days,
+        hours,
+        minutes
+      });
+    };
+
+    updateCountdown();
+
+    const timer = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(timer);
+  }, [
+    customizationData?.weddingDate,
+    customizationData?.weddingTime
+  ]);
+
+  /* =====================================================
+     END LIVE COUNTDOWN ENGINE
+     ===================================================== */
+
   const [cart, setCart] = useState(null);
 
   // Auth
@@ -130,6 +208,92 @@ export default function App() {
   const [rsvpAttendance, setRsvpAttendance] = useState('Yes, I will attend');
   const [rsvpMessage, setRsvpMessage] = useState('');
   const audioRef = useRef(null);
+
+// N&N VOW SHARED GUEST FEEDBACK
+const [feedbackItems, setFeedbackItems] = useState([]);
+const [feedbackName, setFeedbackName] = useState('');
+const [feedbackMessage, setFeedbackMessage] = useState('');
+const [feedbackRating, setFeedbackRating] = useState(5);
+const [feedbackSubmitting, setFeedbackSubmitting] = useState(false);
+const [feedbackLoading, setFeedbackLoading] = useState(false);
+const [feedbackNotice, setFeedbackNotice] = useState('');
+
+/* N&N VOW SHARED FEEDBACK */
+/* N&N VOW LOAD SHARED FEEDBACK */
+useEffect(() => {
+  if (page !== 'public' && page !== 'demo' && page !== 'preview') return;
+
+  let cancelled = false;
+
+  const loadFeedback = async () => {
+    try {
+      const response = await fetch('/api/feedback');
+
+      if (!response.ok) return;
+
+      const result = await response.json();
+
+      if (!cancelled) {
+        setFeedbackList(Array.isArray(result.feedback) ? result.feedback : []);
+      }
+    } catch {
+      if (!cancelled) {
+        setFeedbackList([]);
+      }
+    }
+  };
+
+  loadFeedback();
+
+  return () => {
+    cancelled = true;
+  };
+}, [page]);
+
+
+
+const submitGuestFeedback = async (event) => {
+  event.preventDefault();
+
+  if (!feedbackName.trim() || !feedbackMessage.trim()) {
+    setFeedbackStatus('Please enter your name and feedback.');
+    return;
+  }
+
+  setFeedbackSubmitting(true);
+  setFeedbackStatus('');
+
+  try {
+    const response = await fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: feedbackName.trim(),
+        message: feedbackMessage.trim(),
+        rating: Number(feedbackRating) || 5
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('Feedback submission failed');
+    }
+
+    setFeedbackName('');
+    setFeedbackMessage('');
+    setFeedbackRating(5);
+    setFeedbackStatus('Thank you! Your feedback has been shared.');
+
+    const refreshed = await fetch('/api/feedback');
+    if (refreshed.ok) {
+      const result = await refreshed.json();
+      setFeedbackList(Array.isArray(result.feedback) ? result.feedback : []);
+    }
+  } catch (error) {
+    setFeedbackStatus('Sorry, we could not send your feedback. Please try again.');
+  } finally {
+    setFeedbackSubmitting(false);
+  }
+};
 
   // ==================== TRANSLATIONS ====================
   const t = {
@@ -388,6 +552,25 @@ export default function App() {
     }
   };
 
+  const format12HourTime = (timeValue) => {
+    if (!timeValue) return '';
+
+    const value = String(timeValue).trim();
+    const match = value.match(/^(\d{1,2}):(\d{2})(?::\d{2})?$/);
+
+    if (!match) return value;
+
+    let hour = parseInt(match[1], 10);
+    const minute = match[2];
+
+    if (Number.isNaN(hour) || hour < 0 || hour > 23) return value;
+
+    const suffix = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12 || 12;
+
+    return `${hour}:${minute} ${suffix}`;
+  };
+
   const getDaysRemaining = (dateValue) => {
     if (!dateValue) return null;
     const wedding = new Date(`${dateValue}T00:00:00`);
@@ -422,17 +605,17 @@ export default function App() {
   const getEntranceVideo = (templateName, role = 'couple') => {
     // Luxury real-couple walking footage from Pexels. Every theme uses bride + groom together.
     const videosCouple = {
-      Santorini: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'A cinematic seaside walk' },
+      Santorini: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'Bride and groom walking beside Aegean white architecture at golden hour' },
       Toscana: { src: 'https://videos.pexels.com/video-files/10199075/10199075-uhd_2560_1440_25fps.mp4', effect: 'soft-glow', label: 'A golden countryside walk' },
-      Sakura: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'A garden wedding walk' },
-      Deco: { src: 'https://videos.pexels.com/video-files/36569513/15504683_1080_1920_60fps.mp4', effect: 'gold-dust', label: 'A couture ballroom entrance' },
+      Sakura: { src: 'https://videos.pexels.com/video-files/25751937/11906212_3840_2160_50fps.mp4', effect: 'petals', label: 'Bride and groom walking through Japanese cherry blossoms with falling petals' },
+      Deco: { src: 'https://videos.pexels.com/video-files/38359911/16289502_1920_1080_60fps.mp4', effect: 'gold-dust', label: 'Elegant wedding hands with rings and bouquet' },
       Provence: { src: 'https://videos.pexels.com/video-files/29659898/12759458_1920_1080_25fps.mp4', effect: 'petals', label: 'A romantic garden stroll' },
-      Palma: { src: 'https://videos.pexels.com/video-files/5181952/5181952-uhd_3840_2160_30fps.mp4', effect: 'sun-glow', label: 'A luxury coastal walk' },
+      Palma: { src: 'https://videos.pexels.com/video-files/38539345/16368414_1920_1080_24fps.mp4', effect: 'sun-glow', label: 'Bride and groom walking along a Mediterranean beach at sunset' },
       Bloom: { src: 'https://videos.pexels.com/video-files/11698586/11698586-uhd_3840_2160_25fps.mp4', effect: 'petals', label: 'A lush garden stroll' },
-      Royal: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A grand mansion entrance' },
-      Lantern: { src: 'https://videos.pexels.com/video-files/6198382/6198382-uhd_4096_2160_25fps.mp4', effect: 'lantern-glow', label: 'A dramatic old-world walk' },
-      Pyramids: { src: 'https://videos.pexels.com/video-files/10199075/10199075-uhd_2560_1440_25fps.mp4', effect: 'desert-dust', label: 'A cinematic open-landscape walk' },
-      Imperial: { src: 'https://videos.pexels.com/video-files/8435724/8435724-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'A timeless estate entrance' },
+      Royal: { src: 'https://videos.pexels.com/video-files/8435627/8435627-uhd_3840_2160_30fps.mp4', effect: 'gold-dust', label: 'Bride and groom at a grand historic mansion' },
+      Lantern: { src: 'https://videos.pexels.com/video-files/10199074/10199074-uhd_2560_1440_25fps.mp4', effect: 'lantern-glow', label: 'Bride and groom lying together in a peaceful romantic field' },
+      Pyramids: { src: '/pyramids-opening.mp4', effect: 'desert-dust', label: 'Bride and groom walking toward the pyramids at night' },
+      Imperial: { src: 'https://videos.pexels.com/video-files/38359910/16289444_1080_1920_60fps.mp4', effect: 'gold-dust', label: 'Elegant wedding ring exchange close-up' },
       Twilight: { src: 'https://videos.pexels.com/video-files/27101217/12072256_2160_3840_30fps.mp4', effect: 'soft-glow', label: 'An intimate city-light walk' },
     };
     return videosCouple[templateName] || videosCouple.Santorini;
@@ -490,15 +673,15 @@ export default function App() {
     setEnvelopeOpen(false);
     setCustomizationData({
       brideName: '', groomName: '', weddingDate: '', weddingTime: '',
-      venue: '', location: '', dressCode: '', story: '', note: '',
+      venue: '', location: '', dressCode: '', story: '', note: '', note2: '', note3: '',
       photos: [], photoMediaKeys: [], musicMediaKey: '', envelopeColor: tmpl?.colors?.[0] || '#1c3552',
       accentColor: tmpl?.colors?.[1] || '#d4af37',
-      envelopeStyle: 'classic', stampStyle: 'wax-round', stampContent: 'initials', stampColor: '', venueDisplay: 'show', locationDisplay: 'show', mapDisplay: 'none', mapUrl: '', invitationLanguage: 'en', initialsLanguage: 'en',
+      envelopeStyle: 'classic', stampStyle: 'wax-round', stampContent: 'initials', stampColor: '', venueDisplay: 'show', locationDisplay: 'show', mapDisplay: 'none', mapUrl: '', invitationLanguage: 'en', initialsLanguage: 'en', scratchCountdown: true,
       englishFont: 'Cormorant Garamond', englishInitialFont: 'Great Vibes', textColor: tmpl?.colors?.[2] || '#2f2635',
       arabicFont: 'Amiri', arabicInitialFont: 'Amiri',
       arabicBrideName: '', arabicGroomName: '', arabicWeddingTime: '',
       arabicVenue: '', arabicLocation: '', arabicDressCode: '',
-      arabicStory: '', arabicNote: '', arabicRsvp: '',
+      arabicStory: '', arabicNote: '', arabicNote2: '', arabicNote3: '', arabicRsvp: '',
       rsvp: '', rsvpWhatsapp: '', rsvpEmail: '', rsvpLabel: 'RSVP',
       musicType: 'none', musicUrl: '', musicName: '',
     });
@@ -518,15 +701,15 @@ export default function App() {
     setAdminFreeMode(true);
     setCustomizationData({
       brideName: '', groomName: '', weddingDate: '', weddingTime: '',
-      venue: '', location: '', dressCode: '', story: '', note: '',
+      venue: '', location: '', dressCode: '', story: '', note: '', note2: '', note3: '',
       photos: [], photoMediaKeys: [], musicMediaKey: '', envelopeColor: tmpl?.colors?.[0] || '#1c3552',
       accentColor: tmpl?.colors?.[1] || '#d4af37',
-      envelopeStyle: 'classic', stampStyle: 'wax-round', stampContent: 'initials', stampColor: '', venueDisplay: 'show', locationDisplay: 'show', mapDisplay: 'none', mapUrl: '', invitationLanguage: 'en', initialsLanguage: 'en',
+      envelopeStyle: 'classic', stampStyle: 'wax-round', stampContent: 'initials', stampColor: '', venueDisplay: 'show', locationDisplay: 'show', mapDisplay: 'none', mapUrl: '', invitationLanguage: 'en', initialsLanguage: 'en', scratchCountdown: true,
       englishFont: 'Cormorant Garamond', englishInitialFont: 'Great Vibes',
       arabicFont: 'Amiri', arabicInitialFont: 'Amiri',
       arabicBrideName: '', arabicGroomName: '', arabicWeddingTime: '',
       arabicVenue: '', arabicLocation: '', arabicDressCode: '',
-      arabicStory: '', arabicNote: '', arabicRsvp: '',
+      arabicStory: '', arabicNote: '', arabicNote2: '', arabicNote3: '', arabicRsvp: '',
       rsvp: '', rsvpWhatsapp: '', rsvpEmail: '', rsvpLabel: 'RSVP',
       musicType: 'none', musicUrl: '', musicName: '',
     });
@@ -698,12 +881,14 @@ export default function App() {
       dir: isArabic ? 'rtl' : 'ltr',
       brideName: isArabic ? (data?.arabicBrideName || data?.brideName || 'العروس') : (data?.brideName || 'Bride'),
       groomName: isArabic ? (data?.arabicGroomName || data?.groomName || 'العريس') : (data?.groomName || 'Groom'),
-      weddingTime: isArabic ? (data?.arabicWeddingTime || data?.weddingTime || 'وقت الزفاف') : (data?.weddingTime || ''),
+      weddingTime: isArabic ? format12HourTime(data?.arabicWeddingTime || data?.weddingTime || '') : format12HourTime(data?.weddingTime || ''),
       venue: isArabic ? (data?.arabicVenue || data?.venue || 'المكان') : (data?.venue || ''),
       location: isArabic ? (data?.arabicLocation || data?.location || 'الموقع') : (data?.location || ''),
       dressCode: isArabic ? (data?.arabicDressCode || data?.dressCode || 'الملابس المطلوبة') : (data?.dressCode || ''),
       story: isArabic ? (data?.arabicStory || data?.story || '') : (data?.story || ''),
       note: isArabic ? (data?.arabicNote || data?.note || '') : (data?.note || ''),
+      note2: isArabic ? (data?.arabicNote2 || data?.note2 || '') : (data?.note2 || ''),
+      note3: isArabic ? (data?.arabicNote3 || data?.note3 || '') : (data?.note3 || ''),
       rsvp: isArabic ? (data?.arabicRsvp || data?.rsvp || '') : (data?.rsvp || ''),
       kicker: isArabic ? 'بمشاركة عائلتيهما' : 'Together with their families',
       countdown: isArabic ? 'يوم حتى الزفاف' : 'days until the wedding',
@@ -749,18 +934,20 @@ export default function App() {
     { id: 'filigree', label: 'Gold Filigree', description: 'Fine ornamental goldwork pattern' },
   ];
 
+  /* N&N VOW LUXURY STAMP COLLECTION */
   const stampStyles = [
-    { id: 'wax-round', label: 'Classic Wax', description: 'Round raised wax seal' },
-    { id: 'wax-scallop', label: 'Scalloped Wax', description: 'Hand-pressed scalloped seal' },
-    { id: 'gold-medallion', label: 'Gold Medallion', description: 'Polished couture crest' },
-    { id: 'square-crest', label: 'Square Crest', description: 'Modern engraved seal' },
-    { id: 'botanical', label: 'Botanical Seal', description: 'Leaf-framed monogram seal' },
-    { id: 'black-wax', label: 'Black Wax', description: 'Dark dramatic wax finish' },
-    { id: 'crescent-stamp', label: 'Crescent', description: 'Elegant celestial seal' },
-    { id: 'floral-emblem', label: 'Floral Emblem', description: 'Delicate floral crest' },
-    { id: 'crown-stamp', label: 'Royal Crown', description: 'Regal crown-inspired seal' },
-    { id: 'infinity-stamp', label: 'Infinity', description: 'Timeless intertwined emblem' },
-    { id: 'star-medallion', label: 'Star Medallion', description: 'Eight-point luxury star seal' },
+    { id: 'monogram-embossed', label: 'Embossed Monogram', description: 'Deep wax seal with intertwined initials' },
+    { id: 'botanical-leaf', label: 'Botanical Leaf', description: 'Elegant botanical branches surrounding the seal' },
+    { id: 'script-letter', label: 'Elegant Script', description: 'Refined handwritten letter pressed into wax' },
+    { id: 'ornamental-emblem', label: 'Ornamental Emblem', description: 'Decorative couture emblem with engraved detail' },
+    { id: 'floral-crown', label: 'Floral Crown', description: 'Floral ornament with a delicate crown' },
+    { id: 'royal-crest', label: 'Royal Crest', description: 'Regal engraved crest for a grand invitation' },
+    { id: 'crescent-arabesque', label: 'Crescent Arabesque', description: 'Crescent moon surrounded by Arabic ornament' },
+    { id: 'intertwined-initials', label: 'Intertwined Initials', description: 'Luxury overlapping monogram design' },
+    { id: 'floral-medallion', label: 'Floral Medallion', description: 'Raised floral frame with an elegant center' },
+    { id: 'engraved-oval', label: 'Engraved Oval', description: 'Vintage oval seal with fine engraved borders' },
+    { id: 'scalloped-couture', label: 'Scalloped Couture', description: 'Hand-pressed scalloped wax edge' },
+    { id: 'plain-luxury', label: 'Plain Luxury', description: 'Minimal wax seal without initials' }
   ];
 
   const englishFonts = ['Cormorant Garamond', 'Playfair Display', 'Cinzel', 'Libre Baskerville', 'Great Vibes', 'Bodoni Moda', 'DM Serif Display', 'EB Garamond', 'Marcellus', 'Prata', 'Lora', 'Allura', 'Parisienne', 'Alex Brush', 'Italianno', 'Tangerine', 'Sacramento'];
@@ -797,7 +984,7 @@ export default function App() {
             <button className={`envelope envelope-${envelopeStyle}`} style={{ '--envelope': envelopeColor, '--accent': accentColor }} onClick={openEnvelope}>
               <div className="envelope-flap" />
               <div
-                className={`envelope-seal stamp-${d.stampStyle || 'wax-round'}`}
+                className={`envelope-seal stamp-${d.stampStyle || 'wax-round'} stamp-shape-${d.stampShape || 'round'}`}
                 style={{
                   '--stamp-color': d.stampColor || accentColor,
                   borderColor: d.stampColor || accentColor,
@@ -851,7 +1038,7 @@ export default function App() {
     }
 
     return (
-      <div className="invitation-preview invitation-opened" dir={invitationCopy.dir} style={{ fontFamily: `'${invitationFont}', var(--serif)`, color: textColor }}>
+      <div className={`invitation-preview invitation-opened invitation-theme-${templateSlug}`} dir={invitationCopy.dir} style={{ fontFamily: `'${invitationFont}', var(--serif)`, color: textColor }}>
         <div className="invitation-hero" style={{
           background: `linear-gradient(135deg, ${envelopeColor}, ${bg})`,
           borderBottom: `3px solid ${accentColor}`
@@ -865,12 +1052,110 @@ export default function App() {
         </div>
 
         <div className="invitation-details" style={{ color: textColor }}>
-          {days !== null && (
-            <div className="countdown-box" style={{ borderColor: accentColor }}>
-              <div className="countdown-number" style={{ color: accentColor }}>{days}</div>
-              <div className="countdown-label">{invitationCopy.countdown}</div>
+      {d.weddingDate && (
+        <div
+          className="scratch-countdown-card"
+          style={{ borderColor: accentColor }}
+        >
+          <div className="scratch-countdown-heading">
+            {invitationCopy.countdown}
+          </div>
+
+          <div className="scratch-countdown-reveal">
+
+            <div className="countdown-units">
+
+              <div className="countdown-unit">
+                <div
+                  className="countdown-unit-number"
+                  style={{ color: accentColor }}
+                >
+                  {liveCountdown.days}
+                </div>
+                <div className="countdown-unit-label">DAYS</div>
+              </div>
+
+              <div
+                className="countdown-divider"
+                style={{ color: accentColor }}
+              >
+                :
+              </div>
+
+              <div className="countdown-unit">
+                <div
+                  className="countdown-unit-number"
+                  style={{ color: accentColor }}
+                >
+                  {String(liveCountdown.hours).padStart(2, '0')}
+                </div>
+                <div className="countdown-unit-label">HOURS</div>
+              </div>
+
+              <div
+                className="countdown-divider"
+                style={{ color: accentColor }}
+              >
+                :
+              </div>
+
+              <div className="countdown-unit">
+                <div
+                  className="countdown-unit-number"
+                  style={{ color: accentColor }}
+                >
+                  {String(liveCountdown.minutes).padStart(2, '0')}
+                </div>
+                <div className="countdown-unit-label">MINUTES</div>
+              </div>
+
             </div>
-          )}
+
+            {!countdownRevealed && (
+              <canvas
+                ref={scratchCanvasRef}
+                className="scratch-countdown-canvas"
+                onPointerDown={(event) => {
+                  event.currentTarget.setPointerCapture?.(event.pointerId);
+                  scratchCountdown(event);
+                }}
+                onPointerMove={(event) => {
+                  if (event.buttons > 0) {
+                    scratchCountdown(event);
+                  }
+                }}
+                onPointerUp={(event) => {
+                  event.currentTarget.releasePointerCapture?.(event.pointerId);
+                }}
+                onPointerCancel={(event) => {
+                  event.currentTarget.releasePointerCapture?.(event.pointerId);
+                }}
+              />
+            )}
+
+          </div>
+
+          <div className="scratch-countdown-footer">
+            {!countdownRevealed ? (
+              <>
+                <span>Scratch with your finger or mouse</span>
+                <span>{Math.min(100, Math.round(scratchProgress))}%</span>
+              </>
+            ) : (
+              <>
+                <span>✨ Countdown revealed ✨</span>
+                <button
+                  type="button"
+                  className="scratch-reset-btn"
+                  onClick={resetScratchCountdown}
+                >
+                  Scratch again
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
           {invitationCopy.weddingTime && <div className="detail-row"><div className="detail-label">{invitationCopy.weddingTimeLabel}</div><div className="detail-value">{invitationCopy.weddingTime}</div></div>}
 
@@ -1411,6 +1696,29 @@ export default function App() {
                     </div>
                     <div className="form-group"><label>قصتنا</label><textarea dir="rtl" rows="4" value={customizationData?.arabicStory || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicStory: e.target.value })} placeholder="اكتبوا قصتكم بالعربية..." /></div>
                     <div className="form-group"><label>رسالة خاصة</label><textarea dir="rtl" rows="3" value={customizationData?.arabicNote || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicNote: e.target.value })} placeholder="رسالة اختيارية للضيوف..." /></div>
+
+{/* N&N VOW NOTE 2 ARABIC */}
+<div className="form-group">
+  <label>ملاحظة ثانية اختيارية</label>
+  <textarea
+    dir="rtl"
+    rows="3"
+    value={customizationData?.arabicNote2 || ''}
+    onChange={(e) => setCustomizationData({ ...customizationData, arabicNote2: e.target.value })}
+    placeholder="ملاحظة اختيارية ثانية للضيوف..."
+  />
+</div>
+
+<div className="form-group">
+  <label>ملاحظة ثالثة اختيارية</label>
+  <textarea
+    dir="rtl"
+    rows="3"
+    value={customizationData?.arabicNote3 || ''}
+    onChange={(e) => setCustomizationData({ ...customizationData, arabicNote3: e.target.value })}
+    placeholder="ملاحظة اختيارية ثالثة للضيوف..."
+  />
+</div>
                     <div className="form-group"><label>ملاحظة تأكيد الحضور</label><input dir="rtl" value={customizationData?.arabicRsvp || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicRsvp: e.target.value })} placeholder="مثال: يرجى تأكيد الحضور قبل..." /></div>
                   </>
                 )}
@@ -1454,6 +1762,27 @@ export default function App() {
               value={customizationData?.note || ''}
               onChange={(e) => setCustomizationData({ ...customizationData, note: e.target.value })}
               placeholder="For example: We can't wait to celebrate with the kids..."
+            />
+          </div>
+
+          {/* N&N VOW NOTE 2 ENGLISH */}
+          <div className="form-group">
+            <label>Note 2 (optional)</label>
+            <textarea
+              rows="3"
+              value={customizationData?.note2 || ''}
+              onChange={(e) => setCustomizationData({ ...customizationData, note2: e.target.value })}
+              placeholder="Another optional note for your guests..."
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Note 3 (optional)</label>
+            <textarea
+              rows="3"
+              value={customizationData?.note3 || ''}
+              onChange={(e) => setCustomizationData({ ...customizationData, note3: e.target.value })}
+              placeholder="A third optional note for your guests..."
             />
           </div>
 
@@ -1528,8 +1857,21 @@ export default function App() {
             </div>
 
             <div className="form-row" style={{ marginTop: '1rem' }}>
-              <div className="form-group">
-                <label>Stamp content</label>
+              <div className="form-group">      /* N&N VOW STAMP SHAPE CONTROL */
+      <div className="form-group">
+        <label>Stamp shape</label>
+        <select
+          value={customizationData?.stampShape || 'round'}
+          onChange={(e) => setCustomizationData({ ...customizationData, stampShape: e.target.value })}
+        >
+          <option value="round">Round</option>
+          <option value="scalloped">Scalloped</option>
+          <option value="engraved">Engraved</option>
+          <option value="medallion">Medallion</option>
+        </select>
+      </div>
+
+      <label>Stamp content</label>
                 <select
                   value={customizationData?.stampContent || 'initials'}
                   onChange={(e) => setCustomizationData({ ...customizationData, stampContent: e.target.value })}
@@ -1538,9 +1880,19 @@ export default function App() {
                   <option value="decorative">Decorative stamp — no initials</option>
                 </select>
               </div>
-
-              <div className="form-group">
-                <label>Stamp color</label>
+      /* N&N VOW INITIAL LANGUAGE CONTROL */
+      <div className="form-group">
+        <label>Initial language</label>
+        <select
+          value={customizationData?.initialsLanguage || 'en'}
+          onChange={(e) => setCustomizationData({ ...customizationData, initialsLanguage: e.target.value })}
+        >
+          <option value="en">English initials</option>
+          <option value="ar">Arabic initials</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Stamp color</label>
                 <div className="color-control">
                   <input
                     type="color"

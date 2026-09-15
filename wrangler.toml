@@ -1,11 +1,11 @@
 name = "nn-vow"
+main = "src/worker.js"
 compatibility_date = "2026-09-13"
-pages_build_output_dir = "dist"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "nn-vow"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "db19b377-3e28-42ad-94c9-4b81cf30faad"
 
 [[r2_buckets]]
 binding = "MEDIA"
@@ -13,4 +13,5 @@ bucket_name = "nn-vow-media"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "single-page-application"
