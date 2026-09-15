@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Heart, Menu, X, ChevronRight, Star, Users, CheckCircle, Globe,
   LogOut, Plus, Edit, Eye, Trash2, Settings, BarChart3, Package,
@@ -156,27 +156,27 @@ export default function App() {
       terms: 'TermsConditions', all: 'All',
     },
     ar: {
-      home: 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©', designs: 'Ø§Ù„Ø£Ø¹Ù…Ø§Ù„', howWorks: 'ÙƒÙŠÙÙŠØ© Ø§Ù„Ø¹Ù…Ù„', about: 'Ø¹Ù†Ù‘Ø§',
-      contact: 'ØªÙˆØ§ØµÙ„', login: 'Ø¯Ø®ÙˆÙ„', account: 'Ø­Ø³Ø§Ø¨ÙŠ', logout: 'Ø®Ø±ÙˆØ¬',
-      heroTitle: 'Ø§Ø­ØªÙÙ„ Ø¨Ù‚ØµØ© Ø­Ø¨Ùƒ Ø¨Ø£Ù†Ø§Ù‚Ø©',
-      heroSubtitle: 'Ø¯Ø¹ÙˆØ§Øª Ø²ÙØ§Ù Ø±Ù‚Ù…ÙŠØ© ÙØ§Ø®Ø±Ø© Ù…ØµÙ…Ù…Ø© Ù„Ù„Ø£Ø²ÙˆØ§Ø¬ Ø§Ù„Ø£ÙƒØ«Ø± ØªÙ…ÙŠØ²Ø§Ù‹',
-      explore: 'Ø§ÙƒØªØ´Ù Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹Ø©', createOwn: 'ØªØµÙ…ÙŠÙ… Ù…Ø®ØµØµ',
-      featured: 'Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ù…Ù…ÙŠØ²Ø©', viewInvitation: 'Ø¹Ø±Ø¶ Ø§Ù„Ø¯Ø¹ÙˆØ©',
-      customizeDesign: 'ØªØ®ØµÙŠØµ Ø§Ù„ØªØµÙ…ÙŠÙ…', price: 'Ø§Ù„Ø³Ø¹Ø±', customize: 'ØªØ®ØµÙŠØµ',
-      preview: 'Ù…Ø¹Ø§ÙŠÙ†Ø©', coupleName: 'Ø£Ø³Ù…Ø§Ø¡ Ø§Ù„Ø²ÙˆØ¬ÙŠÙ†', weddingDate: 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø²ÙØ§Ù',
-      weddingTime: 'ÙˆÙ‚Øª Ø§Ù„Ø²ÙØ§Ù', venue: 'Ø§Ù„Ù…ÙƒØ§Ù†', location: 'Ø§Ù„Ù…ÙˆÙ‚Ø¹',
-      brideName: 'Ø§Ø³Ù… Ø§Ù„Ø¹Ø±ÙˆØ³', groomName: 'Ø§Ø³Ù… Ø§Ù„Ø¹Ø±ÙŠØ³', rsvp: 'ØªÙØ§ØµÙŠÙ„ ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¶ÙˆØ±',
-      dressCode: 'Ø§Ù„Ù…Ù„Ø§Ø¨Ø³ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©', story: 'Ù‚ØµØªÙ†Ø§', checkout: 'Ø§Ù„Ø¯ÙØ¹ Ø§Ù„Ø¢Ù…Ù†',
-      payment: 'ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø¯ÙØ¹', total: 'Ø§Ù„Ù…Ø¨Ù„Øº Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠ', complete: 'Ø¥ØªÙ…Ø§Ù… Ø§Ù„Ø´Ø±Ø§Ø¡',
-      share: 'Ø´Ø§Ø±Ùƒ Ù…Ø¹ Ø§Ù„Ø¶ÙŠÙˆÙ', copy: 'Ù†Ø³Ø® Ø§Ù„Ø±Ø§Ø¨Ø·', dashboard: 'Ù…Ø¬Ù…ÙˆØ¹ØªÙŠ',
-      edit: 'ØªØ¹Ø¯ÙŠÙ„', viewLive: 'Ø¹Ø±Ø¶', delete: 'Ø­Ø°Ù', admin: 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…',
-      templates: 'Ø§Ù„Ø£Ø¹Ù…Ø§Ù„', orders: 'Ø§Ù„Ø·Ù„Ø¨Ø§Øª', customers: 'Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡', settings: 'Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª',
-      back: 'Ø±Ø¬ÙˆØ¹', faq: 'Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ø´Ø§Ø¦Ø¹Ø©', whyUs: 'Ù„Ù…Ø§Ø°Ø§ N&N Vow',
-      readyToInvite: 'Ù‡Ù„ Ø£Ù†Øª Ù…Ø³ØªØ¹Ø¯ Ù„Ø¥Ù†Ø´Ø§Ø¡ Ø¯Ø¹ÙˆØªÙƒ Ø§Ù„Ù…Ø«Ø§Ù„ÙŠØ©ØŸ',
-      step1: 'Ø§Ø®ØªØ± Ø§Ù„ØªØµÙ…ÙŠÙ…', step2: 'Ø®ØµØµ Ø§Ù„ØªÙØ§ØµÙŠÙ„', step3: 'Ù…Ø¹Ø§ÙŠÙ†Ø©',
-      step4: 'Ø§Ù„Ø¯ÙØ¹ Ø§Ù„Ø¢Ù…Ù†', step5: 'Ø´Ø§Ø±Ùƒ Ø¨Ø£Ù†Ø§Ù‚Ø©', myInvitations: 'Ø¯Ø¹ÙˆØ§ØªÙŠ',
-      status: 'Ø§Ù„Ø­Ø§Ù„Ø©', shareLink: 'Ø±Ø§Ø¨Ø· Ø§Ù„Ù…Ø´Ø§Ø±ÙƒØ©', privacy: 'Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø®ØµÙˆØµÙŠØ©',
-      terms: 'Ø§Ù„Ø´Ø±ÙˆØ· ÙˆØ§Ù„Ø£Ø­ÙƒØ§Ù…', all: 'Ø§Ù„ÙƒÙ„',
+      home: 'الرئيسية', designs: 'الأعمال', howWorks: 'كيفية العمل', about: 'عنّا',
+      contact: 'تواصل', login: 'دخول', account: 'حسابي', logout: 'خروج',
+      heroTitle: 'احتفل بقصة حبك بأناقة',
+      heroSubtitle: 'دعوات زفاف رقمية فاخرة مصممة للأزواج الأكثر تميزاً',
+      explore: 'اكتشف المجموعة', createOwn: 'تصميم مخصص',
+      featured: 'المجموعة المميزة', viewInvitation: 'عرض الدعوة',
+      customizeDesign: 'تخصيص التصميم', price: 'السعر', customize: 'تخصيص',
+      preview: 'معاينة', coupleName: 'أسماء الزوجين', weddingDate: 'تاريخ الزفاف',
+      weddingTime: 'وقت الزفاف', venue: 'المكان', location: 'الموقع',
+      brideName: 'اسم العروس', groomName: 'اسم العريس', rsvp: 'تفاصيل تأكيد الحضور',
+      dressCode: 'الملابس المطلوبة', story: 'قصتنا', checkout: 'الدفع الآمن',
+      payment: 'تفاصيل الدفع', total: 'المبلغ الإجمالي', complete: 'إتمام الشراء',
+      share: 'شارك مع الضيوف', copy: 'نسخ الرابط', dashboard: 'مجموعتي',
+      edit: 'تعديل', viewLive: 'عرض', delete: 'حذف', admin: 'لوحة التحكم',
+      templates: 'الأعمال', orders: 'الطلبات', customers: 'العملاء', settings: 'الإعدادات',
+      back: 'رجوع', faq: 'الأسئلة الشائعة', whyUs: 'لماذا N&N Vow',
+      readyToInvite: 'هل أنت مستعد لإنشاء دعوتك المثالية؟',
+      step1: 'اختر التصميم', step2: 'خصص التفاصيل', step3: 'معاينة',
+      step4: 'الدفع الآمن', step5: 'شارك بأناقة', myInvitations: 'دعواتي',
+      status: 'الحالة', shareLink: 'رابط المشاركة', privacy: 'سياسة الخصوصية',
+      terms: 'الشروط والأحكام', all: 'الكل',
     },
   };
 
@@ -643,7 +643,7 @@ export default function App() {
     e.preventDefault();
     const whatsappNumber = '201117141072';
     const whatsappMessage = [
-      'ðŸ’Œ New message from N&N Vow website',
+      '💌 New message from N&N Vow website',
       '',
       `Name: ${contactForm.name}`,
       `Phone: ${contactForm.phone}`,
@@ -695,33 +695,33 @@ export default function App() {
     return {
       isArabic,
       dir: isArabic ? 'rtl' : 'ltr',
-      brideName: isArabic ? (data?.arabicBrideName || data?.brideName || 'Ø§Ù„Ø¹Ø±ÙˆØ³') : (data?.brideName || 'Bride'),
-      groomName: isArabic ? (data?.arabicGroomName || data?.groomName || 'Ø§Ù„Ø¹Ø±ÙŠØ³') : (data?.groomName || 'Groom'),
-      weddingTime: isArabic ? (data?.arabicWeddingTime || data?.weddingTime || 'ÙˆÙ‚Øª Ø§Ù„Ø²ÙØ§Ù') : (data?.weddingTime || ''),
-      venue: isArabic ? (data?.arabicVenue || data?.venue || 'Ø§Ù„Ù…ÙƒØ§Ù†') : (data?.venue || ''),
-      location: isArabic ? (data?.arabicLocation || data?.location || 'Ø§Ù„Ù…ÙˆÙ‚Ø¹') : (data?.location || ''),
-      dressCode: isArabic ? (data?.arabicDressCode || data?.dressCode || 'Ø§Ù„Ù…Ù„Ø§Ø¨Ø³ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©') : (data?.dressCode || ''),
+      brideName: isArabic ? (data?.arabicBrideName || data?.brideName || 'العروس') : (data?.brideName || 'Bride'),
+      groomName: isArabic ? (data?.arabicGroomName || data?.groomName || 'العريس') : (data?.groomName || 'Groom'),
+      weddingTime: isArabic ? (data?.arabicWeddingTime || data?.weddingTime || 'وقت الزفاف') : (data?.weddingTime || ''),
+      venue: isArabic ? (data?.arabicVenue || data?.venue || 'المكان') : (data?.venue || ''),
+      location: isArabic ? (data?.arabicLocation || data?.location || 'الموقع') : (data?.location || ''),
+      dressCode: isArabic ? (data?.arabicDressCode || data?.dressCode || 'الملابس المطلوبة') : (data?.dressCode || ''),
       story: isArabic ? (data?.arabicStory || data?.story || '') : (data?.story || ''),
       note: isArabic ? (data?.arabicNote || data?.note || '') : (data?.note || ''),
       rsvp: isArabic ? (data?.arabicRsvp || data?.rsvp || '') : (data?.rsvp || ''),
-      kicker: isArabic ? 'Ø¨Ù…Ø´Ø§Ø±ÙƒØ© Ø¹Ø§Ø¦Ù„ØªÙŠÙ‡Ù…Ø§' : 'Together with their families',
-      countdown: isArabic ? 'ÙŠÙˆÙ… Ø­ØªÙ‰ Ø§Ù„Ø²ÙØ§Ù' : 'days until the wedding',
-      moments: isArabic ? 'Ù„Ø­Ø¸Ø§ØªÙ†Ø§' : 'Our moments',
-      specialNote: isArabic ? 'Ø±Ø³Ø§Ù„Ø© Ø®Ø§ØµØ©' : 'A special note',
-      rsvpPrompt: isArabic ? 'ÙŠØ³Ø¹Ø¯Ù†Ø§ Ù…Ø¹Ø±ÙØ© Ù…Ø§ Ø¥Ø°Ø§ ÙƒÙ†ØªÙ… Ø³ØªØ´Ø§Ø±ÙƒÙˆÙ†Ù†Ø§ Ù‡Ø°Ù‡ Ø§Ù„Ù…Ù†Ø§Ø³Ø¨Ø©.' : 'We would love to know if you can join us.',
-      yourName: isArabic ? 'Ø§Ø³Ù…Ùƒ' : 'Your name',
-      optionalMessage: isArabic ? 'Ø±Ø³Ø§Ù„Ø© Ø§Ø®ØªÙŠØ§Ø±ÙŠØ©' : 'Optional message',
-      yes: isArabic ? 'Ù†Ø¹Ù…ØŒ Ø³Ø£Ø­Ø¶Ø±' : 'Yes, I will attend',
-      no: isArabic ? 'Ø¹Ø°Ø±Ø§Ù‹ØŒ Ù„Ù† Ø£ØªÙ…ÙƒÙ† Ù…Ù† Ø§Ù„Ø­Ø¶ÙˆØ±' : "Sorry, I can't attend",
-      whatsapp: isArabic ? 'ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¶ÙˆØ± Ø¹Ø¨Ø± ÙˆØ§ØªØ³Ø§Ø¨' : 'WhatsApp RSVP',
-      email: isArabic ? 'ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¶ÙˆØ± Ø¹Ø¨Ø± Ø§Ù„Ø¨Ø±ÙŠØ¯' : 'Email RSVP',
-      weddingDate: isArabic ? (data?.arabicWeddingDate || data?.weddingDate || 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø²ÙØ§Ù') : (data?.weddingDate || 'Wedding Date'),
-      weddingTimeLabel: isArabic ? 'ÙˆÙ‚Øª Ø§Ù„Ø²ÙØ§Ù' : 'Wedding Time',
-      venueLabel: isArabic ? 'Ø§Ù„Ù…ÙƒØ§Ù†' : 'Venue',
-      locationLabel: isArabic ? 'Ø§Ù„Ù…ÙˆÙ‚Ø¹' : 'Location',
-      dressCodeLabel: isArabic ? 'Ø§Ù„Ù…Ù„Ø§Ø¨Ø³ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©' : 'Dress Code',
-      storyLabel: isArabic ? 'Ù‚ØµØªÙ†Ø§' : 'Our Love Story',
-      rsvpLabel: isArabic ? 'ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¶ÙˆØ±' : 'RSVP',
+      kicker: isArabic ? 'بمشاركة عائلتيهما' : 'Together with their families',
+      countdown: isArabic ? 'يوم حتى الزفاف' : 'days until the wedding',
+      moments: isArabic ? 'لحظاتنا' : 'Our moments',
+      specialNote: isArabic ? 'رسالة خاصة' : 'A special note',
+      rsvpPrompt: isArabic ? 'يسعدنا معرفة ما إذا كنتم ستشاركوننا هذه المناسبة.' : 'We would love to know if you can join us.',
+      yourName: isArabic ? 'اسمك' : 'Your name',
+      optionalMessage: isArabic ? 'رسالة اختيارية' : 'Optional message',
+      yes: isArabic ? 'نعم، سأحضر' : 'Yes, I will attend',
+      no: isArabic ? 'عذراً، لن أتمكن من الحضور' : "Sorry, I can't attend",
+      whatsapp: isArabic ? 'تأكيد الحضور عبر واتساب' : 'WhatsApp RSVP',
+      email: isArabic ? 'تأكيد الحضور عبر البريد' : 'Email RSVP',
+      weddingDate: isArabic ? (data?.arabicWeddingDate || data?.weddingDate || 'تاريخ الزفاف') : (data?.weddingDate || 'Wedding Date'),
+      weddingTimeLabel: isArabic ? 'وقت الزفاف' : 'Wedding Time',
+      venueLabel: isArabic ? 'المكان' : 'Venue',
+      locationLabel: isArabic ? 'الموقع' : 'Location',
+      dressCodeLabel: isArabic ? 'الملابس المطلوبة' : 'Dress Code',
+      storyLabel: isArabic ? 'قصتنا' : 'Our Love Story',
+      rsvpLabel: isArabic ? 'تأكيد الحضور' : 'RSVP',
     };
   };
 
@@ -894,14 +894,14 @@ export default function App() {
 
           {d.musicType === 'upload' && d.musicUrl && (
             <div className="invitation-music">
-              <div className="music-playing">ðŸŽµ {d.musicName || 'Our song'}</div>
+              <div className="music-playing">🎵 {d.musicName || 'Our song'}</div>
               <audio ref={audioRef} key={`${d.musicUrl}-${envelopeOpen}`} controls autoPlay playsInline src={d.musicUrl} />
             </div>
           )}
 
           {d.musicType === 'youtube' && getYouTubeEmbedUrl(d.musicUrl, envelopeOpen) && (
             <div className="invitation-music youtube-music">
-              <div className="music-playing">ðŸŽµ Our song</div>
+              <div className="music-playing">🎵 Our song</div>
               <iframe
                 key={`${d.musicUrl}-${envelopeOpen}`}
                 src={getYouTubeEmbedUrl(d.musicUrl, envelopeOpen)}
@@ -973,7 +973,7 @@ export default function App() {
         <div className="navbar-actions">
           <button className="lang-toggle" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>
             <Globe size={14} style={{ display: 'inline', marginRight: '4px' }} />
-            {lang === 'en' ? 'Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©' : 'English'}
+            {lang === 'en' ? 'العربية' : 'English'}
           </button>
           <button className="menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -1116,7 +1116,7 @@ export default function App() {
       <div className="testimonials-grid">
         {TESTIMONIALS.map((tm, i) => (
           <div className="testimonial-card" key={i}>
-            <div className="stars">{'â˜…'.repeat(5)}</div>
+            <div className="stars">{'★'.repeat(5)}</div>
             <p>"{tm.text}"</p>
             <div className="name">{tm.name}</div>
           </div>
@@ -1161,7 +1161,7 @@ export default function App() {
       </button>
       <h2 className="section-title">{tr.customizeDesign}</h2>
       <p className="section-subtitle">
-        {selectedTemplate?.name} â€” ${selectedTemplate?.price}
+        {selectedTemplate?.name} — ${selectedTemplate?.price}
         {adminFreeMode && <span className="admin-mode-badge">Admin free invitation</span>}
       </p>
       <div className="customize-layout">
@@ -1187,7 +1187,7 @@ export default function App() {
             </div>
           </div>
           <div className="cinematic-entrance-note">
-            <strong>Luxury cinematic entrance ðŸŽ¬</strong>
+            <strong>Luxury cinematic entrance 🎬</strong>
             <span>Each theme now uses real bride-and-groom walking footage matched to the invitation style.</span>
           </div>
           <div className="form-row">
@@ -1260,27 +1260,27 @@ export default function App() {
                 <p>Enter Arabic versions so the finished invitation uses real Arabic content, not translated labels only.</p>
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Ø§Ø³Ù… Ø§Ù„Ø¹Ø±ÙˆØ³</label>
-                    <input dir="rtl" value={customizationData?.arabicBrideName || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicBrideName: e.target.value })} placeholder="Ù…Ø«Ø§Ù„: Ù…ÙŠØ§Ù†" />
+                    <label>اسم العروس</label>
+                    <input dir="rtl" value={customizationData?.arabicBrideName || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicBrideName: e.target.value })} placeholder="مثال: ميان" />
                   </div>
                   <div className="form-group">
-                    <label>Ø§Ø³Ù… Ø§Ù„Ø¹Ø±ÙŠØ³</label>
-                    <input dir="rtl" value={customizationData?.arabicGroomName || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicGroomName: e.target.value })} placeholder="Ù…Ø«Ø§Ù„: Ù…Ø¤Ù…Ù†" />
+                    <label>اسم العريس</label>
+                    <input dir="rtl" value={customizationData?.arabicGroomName || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicGroomName: e.target.value })} placeholder="مثال: مؤمن" />
                   </div>
                 </div>
                 {customizationData?.invitationLanguage === 'ar' && (
                   <>
                     <div className="form-row">
-                      <div className="form-group"><label>Ø§Ù„ÙˆÙ‚Øª</label><input dir="rtl" value={customizationData?.arabicWeddingTime || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicWeddingTime: e.target.value })} placeholder="Ù…Ø«Ø§Ù„: 4:30 Ù…Ø³Ø§Ø¡Ù‹" /></div>
-                      <div className="form-group"><label>Ø§Ù„Ù…ÙƒØ§Ù†</label><input dir="rtl" value={customizationData?.arabicVenue || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicVenue: e.target.value })} placeholder="Ø§Ø³Ù… Ø§Ù„Ù…ÙƒØ§Ù†" /></div>
+                      <div className="form-group"><label>الوقت</label><input dir="rtl" value={customizationData?.arabicWeddingTime || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicWeddingTime: e.target.value })} placeholder="مثال: 4:30 مساءً" /></div>
+                      <div className="form-group"><label>المكان</label><input dir="rtl" value={customizationData?.arabicVenue || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicVenue: e.target.value })} placeholder="اسم المكان" /></div>
                     </div>
                     <div className="form-row">
-                      <div className="form-group"><label>Ø§Ù„Ù…ÙˆÙ‚Ø¹</label><input dir="rtl" value={customizationData?.arabicLocation || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicLocation: e.target.value })} placeholder="Ø§Ù„Ø¹Ù†ÙˆØ§Ù† Ø£Ùˆ Ø§Ù„Ù…ÙˆÙ‚Ø¹" /></div>
-                      <div className="form-group"><label>Ø§Ù„Ù…Ù„Ø§Ø¨Ø³ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©</label><input dir="rtl" value={customizationData?.arabicDressCode || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicDressCode: e.target.value })} placeholder="Ù…Ø«Ø§Ù„: Ø±Ø³Ù…ÙŠ" /></div>
+                      <div className="form-group"><label>الموقع</label><input dir="rtl" value={customizationData?.arabicLocation || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicLocation: e.target.value })} placeholder="العنوان أو الموقع" /></div>
+                      <div className="form-group"><label>الملابس المطلوبة</label><input dir="rtl" value={customizationData?.arabicDressCode || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicDressCode: e.target.value })} placeholder="مثال: رسمي" /></div>
                     </div>
-                    <div className="form-group"><label>Ù‚ØµØªÙ†Ø§</label><textarea dir="rtl" rows="4" value={customizationData?.arabicStory || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicStory: e.target.value })} placeholder="Ø§ÙƒØªØ¨ÙˆØ§ Ù‚ØµØªÙƒÙ… Ø¨Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©..." /></div>
-                    <div className="form-group"><label>Ø±Ø³Ø§Ù„Ø© Ø®Ø§ØµØ©</label><textarea dir="rtl" rows="3" value={customizationData?.arabicNote || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicNote: e.target.value })} placeholder="Ø±Ø³Ø§Ù„Ø© Ø§Ø®ØªÙŠØ§Ø±ÙŠØ© Ù„Ù„Ø¶ÙŠÙˆÙ..." /></div>
-                    <div className="form-group"><label>Ù…Ù„Ø§Ø­Ø¸Ø© ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¶ÙˆØ±</label><input dir="rtl" value={customizationData?.arabicRsvp || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicRsvp: e.target.value })} placeholder="Ù…Ø«Ø§Ù„: ÙŠØ±Ø¬Ù‰ ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¶ÙˆØ± Ù‚Ø¨Ù„..." /></div>
+                    <div className="form-group"><label>قصتنا</label><textarea dir="rtl" rows="4" value={customizationData?.arabicStory || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicStory: e.target.value })} placeholder="اكتبوا قصتكم بالعربية..." /></div>
+                    <div className="form-group"><label>رسالة خاصة</label><textarea dir="rtl" rows="3" value={customizationData?.arabicNote || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicNote: e.target.value })} placeholder="رسالة اختيارية للضيوف..." /></div>
+                    <div className="form-group"><label>ملاحظة تأكيد الحضور</label><input dir="rtl" value={customizationData?.arabicRsvp || ''} onChange={(e) => setCustomizationData({ ...customizationData, arabicRsvp: e.target.value })} placeholder="مثال: يرجى تأكيد الحضور قبل..." /></div>
                   </>
                 )}
               </div>
@@ -1403,7 +1403,7 @@ export default function App() {
                 {customizationData.photos.map((photo, i) => (
                   <div className="photo-upload-item" key={i}>
                     <img src={photo} alt={`Selected ${i + 1}`} />
-                    <button type="button" onClick={() => removePhoto(i)}>Ã—</button>
+                    <button type="button" onClick={() => removePhoto(i)}>×</button>
                   </div>
                 ))}
               </div>
@@ -1430,7 +1430,7 @@ export default function App() {
           </div>
 
           <div className="music-box">
-            <h3><span>ðŸŽµ</span> Add a song</h3>
+            <h3><span>🎵</span> Add a song</h3>
             <p className="music-help">Choose a song for the invitation. Upload an audio file or paste a YouTube URL.</p>
             <div className="music-options">
               <button type="button" className={`music-option ${customizationData?.musicType === 'upload' ? 'active' : ''}`}
@@ -1466,7 +1466,7 @@ export default function App() {
                     reader.readAsDataURL(file);
                   }
                 }} />
-                {customizationData.musicName && <div className="music-file-name">âœ“ {customizationData.musicName}</div>}
+                {customizationData.musicName && <div className="music-file-name">✓ {customizationData.musicName}</div>}
                 <small>For this local prototype, the audio is stored in your browser.</small>
               </div>
             )}
@@ -1518,7 +1518,7 @@ export default function App() {
       <p className="section-subtitle">This is exactly how your invitation will look with the information you've entered.</p>
       {selectedTemplate && renderTemplatePreview(selectedTemplate, 'full')}
       <div className="demo-locked">
-        ðŸ”’ The guest/share link stays locked until payment is confirmed.
+        🔒 The guest/share link stays locked until payment is confirmed.
       </div>
       <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
         <button className="btn btn-primary" onClick={handleCheckout}>
@@ -1596,7 +1596,7 @@ export default function App() {
   // ==================== PUBLIC INVITATION PAGE ====================
   const renderPublicInvitation = () => (
     <section className="section public-invitation-page" style={{ paddingTop: '8rem' }}>
-      <div className="public-badge">N&N Vow â€¢ Wedding Invitation</div>
+      <div className="public-badge">N&N Vow • Wedding Invitation</div>
       <p className="section-subtitle">Tap the envelope to open your invitation.</p>
       {selectedTemplate && renderTemplatePreview(selectedTemplate, 'full')}
     </section>
@@ -1644,7 +1644,7 @@ export default function App() {
                 </>
               ) : (
                 <div className="link-locked">
-                  ðŸ”’ Your share link is locked until payment is confirmed by the admin.
+                  🔒 Your share link is locked until payment is confirmed by the admin.
                 </div>
               )}
             </div>
@@ -1741,10 +1741,10 @@ export default function App() {
     return (
     <section className="section" style={{ paddingTop: '8rem' }}>
       <h2 className="section-title">{tr.admin}</h2>
-      <p className="section-subtitle">Welcome, Admin â€” this area controls payment, prices, and admin-only invitations.</p>
+      <p className="section-subtitle">Welcome, Admin — this area controls payment, prices, and admin-only invitations.</p>
       <div className="admin-tabs">
         <button className={`admin-tab admin-free-tab ${adminTab === 'admin' ? 'active' : ''}`} onClick={() => setAdminTab('admin')}>
-          <Settings size={16} /> Admin â€” Free Invitations
+          <Settings size={16} /> Admin — Free Invitations
         </button>
         <button className={`admin-tab ${adminTab === 'templates' ? 'active' : ''}`} onClick={() => setAdminTab('templates')}>
           <DollarSign size={16} /> Adjust Prices
@@ -1768,7 +1768,7 @@ export default function App() {
             <div className="template-admin-row" key={tmpl.id}>
               <div>
                 <div className="name">{tmpl.name}</div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--light-text)' }}>{tmpl.category} â€” {tmpl.description}</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--light-text)' }}>{tmpl.category} — {tmpl.description}</div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 {editingPriceId === tmpl.id ? (
@@ -1826,7 +1826,7 @@ export default function App() {
                         <td>{inv.email || 'Admin'}</td>
                         <td>{inv.bride}{inv.groom}</td>
                         <td>{inv.template}</td>
-                        <td>${tmpl?.price || 'â€”'}</td>
+                        <td>${tmpl?.price || '—'}</td>
                         <td>
                           <span className={`status-badge ${inv.paymentStatus === 'paid' || inv.paymentStatus === 'free' ? 'status-active' : 'status-pending'}`}>
                             {inv.paymentStatus || 'pending'}
@@ -1859,7 +1859,7 @@ export default function App() {
                   {transactions.map((tx) => (
                     <tr key={tx.id}>
                       <td>{new Date(tx.createdAt).toLocaleString()}</td>
-                      <td>{tx.email || 'â€”'}</td>
+                      <td>{tx.email || '—'}</td>
                       <td>${tx.amount}</td>
                       <td><span className={`status-badge ${tx.status === 'paid' ? 'status-active' : 'status-pending'}`}>{tx.status}</span></td>
                     </tr>
@@ -1904,7 +1904,7 @@ export default function App() {
             <button className={paymentTab === 'payment' ? 'active' : ''} onClick={() => setPaymentTab('payment')}>Payment account</button>
             <button className={paymentTab === 'transactions' ? 'active' : ''} onClick={() => setPaymentTab('transactions')}>Transactions</button>
             <button className={`settings-admin-link ${adminTab === 'admin' ? 'active' : ''}`} onClick={() => setAdminTab('admin')}>
-              <Settings size={15} /> Admin â€” Create Free Invitations
+              <Settings size={15} /> Admin — Create Free Invitations
             </button>
           </div>
 
@@ -1948,10 +1948,10 @@ export default function App() {
                         return (
                           <tr key={tx.id}>
                             <td>{new Date(tx.createdAt).toLocaleString()}</td>
-                            <td>{tx.email || 'â€”'}</td>
+                            <td>{tx.email || '—'}</td>
                             <td>${tx.amount}</td>
                             <td><span className={`status-badge ${tx.status === 'paid' ? 'status-active' : 'status-pending'}`}>{tx.status}</span></td>
-                            <td>{tx.status === 'pending' && inv ? <button className="btn-small btn-primary" onClick={() => markTransactionPaid(inv.id)}>Confirm paid</button> : 'â€”'}</td>
+                            <td>{tx.status === 'pending' && inv ? <button className="btn-small btn-primary" onClick={() => markTransactionPaid(inv.id)}>Confirm paid</button> : '—'}</td>
                           </tr>
                         );
                       })}
@@ -1967,7 +1967,7 @@ export default function App() {
       {/* ADMIN TAB */}
       {adminTab === 'admin' && (
         <div className="admin-card">
-          <h3>Admin â€” Create Free Invitations</h3>
+          <h3>Admin — Create Free Invitations</h3>
           <p style={{ color: 'var(--light-text)', marginBottom: '1rem' }}>
             This is your admin-only area. Create finished invitations for free, then copy their short guest link. No customer payment is required.
           </p>
@@ -2041,7 +2041,7 @@ export default function App() {
           Each design is crafted with love, inspired by the world's most beautiful destinations and aesthetics.
         </p>
         <p>
-          From Tuscan vineyards to Aegean shores, from art-deco ballrooms to cherry-blossom gardens â€”
+          From Tuscan vineyards to Aegean shores, from art-deco ballrooms to cherry-blossom gardens —
           we offer a collection that speaks to every love story. Our invitations are fully customizable,
           shareable instantly, and accessible from any device.
         </p>
@@ -2067,7 +2067,7 @@ export default function App() {
         <div className="form-row">
           <div className="form-group">
             <label>Name</label>
-            <input type="text" required value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} placeholder={invitationCopy.yourName} />
+            <input type="text" required value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} placeholder="Your name" />
           </div>
           <div className="form-group">
             <label>Phone</label>
@@ -2189,4 +2189,3 @@ export default function App() {
     </div>
   );
 }
-
