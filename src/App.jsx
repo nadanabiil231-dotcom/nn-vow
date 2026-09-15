@@ -122,6 +122,7 @@ export default function App() {
   });
   const [demoMode, setDemoMode] = useState(false);
   const [envelopeOpen, setEnvelopeOpen] = useState(false);
+  const [revealedDetail, setRevealedDetail] = useState(null);
   const [entranceActive, setEntranceActive] = useState(false);
   const [publicInvitation, setPublicInvitation] = useState(null);
   const [paymentTab, setPaymentTab] = useState('payment');
@@ -492,7 +493,7 @@ export default function App() {
       venue: '', location: '', dressCode: '', story: '', note: '',
       photos: [], photoMediaKeys: [], musicMediaKey: '', envelopeColor: tmpl?.colors?.[0] || '#1c3552',
       accentColor: tmpl?.colors?.[1] || '#d4af37',
-      envelopeStyle: 'classic', stampStyle: 'wax-round', invitationLanguage: 'en', initialsLanguage: 'en',
+      envelopeStyle: 'classic', stampStyle: 'wax-round', stampContent: 'initials', stampColor: '', venueDisplay: 'show', locationDisplay: 'show', mapDisplay: 'none', mapUrl: '', invitationLanguage: 'en', initialsLanguage: 'en',
       englishFont: 'Cormorant Garamond', englishInitialFont: 'Great Vibes', textColor: tmpl?.colors?.[2] || '#2f2635',
       arabicFont: 'Amiri', arabicInitialFont: 'Amiri',
       arabicBrideName: '', arabicGroomName: '', arabicWeddingTime: '',
@@ -520,7 +521,7 @@ export default function App() {
       venue: '', location: '', dressCode: '', story: '', note: '',
       photos: [], photoMediaKeys: [], musicMediaKey: '', envelopeColor: tmpl?.colors?.[0] || '#1c3552',
       accentColor: tmpl?.colors?.[1] || '#d4af37',
-      envelopeStyle: 'classic', stampStyle: 'wax-round', invitationLanguage: 'en', initialsLanguage: 'en',
+      envelopeStyle: 'classic', stampStyle: 'wax-round', stampContent: 'initials', stampColor: '', venueDisplay: 'show', locationDisplay: 'show', mapDisplay: 'none', mapUrl: '', invitationLanguage: 'en', initialsLanguage: 'en',
       englishFont: 'Cormorant Garamond', englishInitialFont: 'Great Vibes',
       arabicFont: 'Amiri', arabicInitialFont: 'Amiri',
       arabicBrideName: '', arabicGroomName: '', arabicWeddingTime: '',
@@ -740,6 +741,12 @@ export default function App() {
     { id: 'velvet', label: 'Velvet Noir', description: 'Deep velvet texture with gold' },
     { id: 'pearl', label: 'Pearl Emboss', description: 'Soft pearl paper with raised detail' },
     { id: 'marble', label: 'Marble Vein', description: 'White marble paper with fine veins' },
+    { id: 'royal', label: 'Royal Crest', description: 'Regal layered crest-inspired finish' },
+    { id: 'mosaic', label: 'Moroccan Mosaic', description: 'Intricate jewel-like geometric pattern' },
+    { id: 'crescent', label: 'Crescent Night', description: 'Elegant celestial midnight design' },
+    { id: 'lace', label: 'Lace Couture', description: 'Delicate bridal lace texture' },
+    { id: 'garden-pearl', label: 'Garden Pearl', description: 'Soft floral pearl-paper finish' },
+    { id: 'filigree', label: 'Gold Filigree', description: 'Fine ornamental goldwork pattern' },
   ];
 
   const stampStyles = [
@@ -749,6 +756,11 @@ export default function App() {
     { id: 'square-crest', label: 'Square Crest', description: 'Modern engraved seal' },
     { id: 'botanical', label: 'Botanical Seal', description: 'Leaf-framed monogram seal' },
     { id: 'black-wax', label: 'Black Wax', description: 'Dark dramatic wax finish' },
+    { id: 'crescent-stamp', label: 'Crescent', description: 'Elegant celestial seal' },
+    { id: 'floral-emblem', label: 'Floral Emblem', description: 'Delicate floral crest' },
+    { id: 'crown-stamp', label: 'Royal Crown', description: 'Regal crown-inspired seal' },
+    { id: 'infinity-stamp', label: 'Infinity', description: 'Timeless intertwined emblem' },
+    { id: 'star-medallion', label: 'Star Medallion', description: 'Eight-point luxury star seal' },
   ];
 
   const englishFonts = ['Cormorant Garamond', 'Playfair Display', 'Cinzel', 'Libre Baskerville', 'Great Vibes', 'Bodoni Moda', 'DM Serif Display', 'EB Garamond', 'Marcellus', 'Prata', 'Lora', 'Allura', 'Parisienne', 'Alex Brush', 'Italianno', 'Tangerine', 'Sacramento'];
@@ -784,8 +796,22 @@ export default function App() {
           <div className="envelope-stage">
             <button className={`envelope envelope-${envelopeStyle}`} style={{ '--envelope': envelopeColor, '--accent': accentColor }} onClick={openEnvelope}>
               <div className="envelope-flap" />
-              <div className={`envelope-seal stamp-${d.stampStyle || 'wax-round'}`} style={{ borderColor: accentColor, color: '#fff', fontFamily: `'${initialFont}', var(--serif)` }}>
-                {Array.from(getCoupleInitials(d)).map((letter, index) => <span key={index} className="initial-letter">{letter}</span>)}
+              <div
+                className={`envelope-seal stamp-${d.stampStyle || 'wax-round'}`}
+                style={{
+                  '--stamp-color': d.stampColor || accentColor,
+                  borderColor: d.stampColor || accentColor,
+                  color: '#fff',
+                  background: d.stampColor || accentColor,
+                  fontFamily: `'${initialFont}', var(--serif)`
+                }}
+              >
+                {d.stampContent === 'decorative'
+                  ? <span className="stamp-decorative-symbol">✦</span>
+                  : Array.from(getCoupleInitials(d)).map((letter, index) => (
+                      <span key={index} className="initial-letter">{letter}</span>
+                    ))
+                }
               </div>
               <div className="envelope-hint">Click the seal to open</div>
             </button>
@@ -847,8 +873,65 @@ export default function App() {
           )}
 
           {invitationCopy.weddingTime && <div className="detail-row"><div className="detail-label">{invitationCopy.weddingTimeLabel}</div><div className="detail-value">{invitationCopy.weddingTime}</div></div>}
-          {invitationCopy.venue && <div className="detail-row"><div className="detail-label">{invitationCopy.venueLabel}</div><div className="detail-value">{invitationCopy.venue}</div></div>}
-          {invitationCopy.location && <div className="detail-row"><div className="detail-label">{invitationCopy.locationLabel}</div><div className="detail-value">{invitationCopy.location}</div></div>}
+
+          {invitationCopy.venue && (
+            <div className="detail-row">
+              <div className="detail-label">{invitationCopy.venueLabel}</div>
+              {d.venueDisplay === 'tap' ? (
+                revealedDetail === 'venue' ? (
+                  <div className="detail-value">{invitationCopy.venue}</div>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setRevealedDetail('venue')}
+                    style={{ marginTop: '.4rem' }}
+                  >
+                    View venue
+                  </button>
+                )
+              ) : (
+                <div className="detail-value">{invitationCopy.venue}</div>
+              )}
+            </div>
+          )}
+
+          {invitationCopy.location && (
+            <div className="detail-row">
+              <div className="detail-label">{invitationCopy.locationLabel}</div>
+              {d.locationDisplay === 'tap' ? (
+                revealedDetail === 'location' ? (
+                  <div className="detail-value">{invitationCopy.location}</div>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setRevealedDetail('location')}
+                    style={{ marginTop: '.4rem' }}
+                  >
+                    View location
+                  </button>
+                )
+              ) : (
+                <div className="detail-value">{invitationCopy.location}</div>
+              )}
+            </div>
+          )}
+
+          {d.mapUrl && d.mapDisplay !== 'none' && (
+            <div className="detail-row">
+              <div className="detail-label">Location map</div>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => window.open(d.mapUrl, '_blank', 'noopener,noreferrer')}
+                style={{ marginTop: '.4rem' }}
+              >
+                {d.mapDisplay === 'tap' ? 'Tap to open map' : 'View location map'}
+              </button>
+            </div>
+          )}
+
           {invitationCopy.dressCode && <div className="detail-row"><div className="detail-label">{invitationCopy.dressCodeLabel}</div><div className="detail-value">{invitationCopy.dressCode}</div></div>}
 
           {(d.photos || []).length > 0 && (
@@ -1222,6 +1305,16 @@ export default function App() {
               onChange={(e) => setCustomizationData({ ...customizationData, venue: e.target.value })}
               placeholder="e.g. Grand Ballroom, Cairo"
             />
+            <div style={{ marginTop: '.6rem' }}>
+              <label>Venue display</label>
+              <select
+                value={customizationData?.venueDisplay || 'show'}
+                onChange={(e) => setCustomizationData({ ...customizationData, venueDisplay: e.target.value })}
+              >
+                <option value="show">Show venue directly</option>
+                <option value="tap">Tap to view venue</option>
+              </select>
+            </div>
           </div>
           <div className="form-group">
             <label>{tr.location}</label>
@@ -1231,6 +1324,38 @@ export default function App() {
               onChange={(e) => setCustomizationData({ ...customizationData, location: e.target.value })}
               placeholder="e.g. Cairo, Egypt"
             />
+            <div style={{ marginTop: '.6rem' }}>
+              <label>Location display</label>
+              <select
+                value={customizationData?.locationDisplay || 'show'}
+                onChange={(e) => setCustomizationData({ ...customizationData, locationDisplay: e.target.value })}
+              >
+                <option value="show">Show location directly</option>
+                <option value="tap">Tap to view location</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Location map</label>
+            <select
+              value={customizationData?.mapDisplay || 'none'}
+              onChange={(e) => setCustomizationData({ ...customizationData, mapDisplay: e.target.value })}
+            >
+              <option value="none">No map</option>
+              <option value="show">Show map option</option>
+              <option value="tap">Tap to open map</option>
+            </select>
+            <input
+              type="url"
+              value={customizationData?.mapUrl || ''}
+              onChange={(e) => setCustomizationData({ ...customizationData, mapUrl: e.target.value })}
+              placeholder="Paste your Google Maps link"
+              style={{ marginTop: '.6rem' }}
+            />
+            <small style={{ display: 'block', marginTop: '.35rem', color: 'var(--light-text)' }}>
+              Add the Google Maps link for your wedding location.
+            </small>
           </div>
           <div className="form-group">
             <label>{tr.dressCode}</label>
@@ -1393,11 +1518,38 @@ export default function App() {
             <div className="stamp-style-grid">
               {stampStyles.map((stamp) => (
                 <button type="button" key={stamp.id} className={`stamp-style-option ${customizationData?.stampStyle === stamp.id ? 'active' : ''}`} onClick={() => setCustomizationData({ ...customizationData, stampStyle: stamp.id })}>
-                  <span className={`mini-stamp mini-stamp-${stamp.id}`}>{getCoupleInitials(customizationData || {})}</span>
+                  <span className={`mini-stamp mini-stamp-${stamp.id}`}>
+                    {customizationData?.stampContent === 'decorative' ? '✦' : getCoupleInitials(customizationData || {})}
+                  </span>
                   <strong>{stamp.label}</strong>
                   <small>{stamp.description}</small>
                 </button>
               ))}
+            </div>
+
+            <div className="form-row" style={{ marginTop: '1rem' }}>
+              <div className="form-group">
+                <label>Stamp content</label>
+                <select
+                  value={customizationData?.stampContent || 'initials'}
+                  onChange={(e) => setCustomizationData({ ...customizationData, stampContent: e.target.value })}
+                >
+                  <option value="initials">Couple initials</option>
+                  <option value="decorative">Decorative stamp — no initials</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Stamp color</label>
+                <div className="color-control">
+                  <input
+                    type="color"
+                    value={customizationData?.stampColor || customizationData?.accentColor || '#d4af37'}
+                    onChange={(e) => setCustomizationData({ ...customizationData, stampColor: e.target.value })}
+                  />
+                  <span>{customizationData?.stampColor || customizationData?.accentColor || '#d4af37'}</span>
+                </div>
+              </div>
             </div>
           </div>
 

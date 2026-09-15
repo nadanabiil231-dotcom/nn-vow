@@ -1901,3 +1901,494 @@ input, textarea, select {
 .invitation-preview[dir="rtl"] .invitation-kicker {
   letter-spacing: 0;
 }
+
+/* =========================================================
+   N&N VOW — LUXURY ENVELOPE PATTERNS & STAMP FINISHES
+   ========================================================= */
+
+/* Islamic geometric star */
+.envelope-islamic {
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 18%, rgba(255,255,255,.08) 19% 20%, transparent 21% 100%),
+    conic-gradient(from 22.5deg, rgba(255,255,255,.10) 0 12.5%, transparent 12.5% 25%);
+  background-color: var(--envelope);
+  background-size: 72px 72px;
+}
+
+.envelope-islamic .envelope-flap {
+  background:
+    linear-gradient(45deg, transparent 47%, rgba(255,255,255,.16) 48% 52%, transparent 53%),
+    linear-gradient(-45deg, transparent 47%, rgba(255,255,255,.10) 48% 52%, transparent 53%);
+  background-size: 36px 36px;
+  background-color: var(--envelope);
+}
+
+/* Arabesque */
+.envelope-arabic {
+  background:
+    radial-gradient(ellipse at center, transparent 0 30%, rgba(255,255,255,.10) 31% 33%, transparent 34%),
+    radial-gradient(ellipse at center, transparent 0 48%, rgba(255,255,255,.07) 49% 51%, transparent 52%);
+  background-color: var(--envelope);
+  background-size: 54px 54px;
+}
+
+.envelope-arabic .envelope-flap {
+  background:
+    radial-gradient(ellipse at center, transparent 0 28%, rgba(255,255,255,.13) 29% 32%, transparent 33%);
+  background-color: var(--envelope);
+  background-size: 48px 48px;
+}
+
+/* Ottoman luxury */
+.envelope-ottoman {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,.10) 0 3%, transparent 4%),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,.08) 0 3%, transparent 4%),
+    linear-gradient(45deg, transparent 45%, rgba(255,255,255,.06) 46% 54%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, rgba(255,255,255,.05) 46% 54%, transparent 55%);
+  background-color: var(--envelope);
+  background-size: 44px 44px;
+}
+
+/* Turkish tulip-inspired pattern */
+.envelope-turkish {
+  background:
+    radial-gradient(ellipse 8px 15px at 25% 30%, rgba(255,255,255,.13) 0 45%, transparent 46%),
+    radial-gradient(ellipse 8px 15px at 75% 70%, rgba(255,255,255,.10) 0 45%, transparent 46%);
+  background-color: var(--envelope);
+  background-size: 58px 58px;
+}
+
+.envelope-turkish .envelope-flap {
+  background:
+    radial-gradient(ellipse 9px 17px at 50% 70%, rgba(255,255,255,.15) 0 45%, transparent 46%);
+  background-color: var(--envelope);
+}
+
+/* Damask */
+.envelope-damask {
+  background:
+    radial-gradient(ellipse at center, transparent 0 34%, rgba(255,255,255,.08) 35% 38%, transparent 39%),
+    radial-gradient(ellipse at 20% 20%, rgba(255,255,255,.07) 0 7%, transparent 8%);
+  background-color: var(--envelope);
+  background-size: 70px 70px;
+}
+
+/* Botanical */
+.envelope-floral {
+  background:
+    radial-gradient(ellipse at 20% 25%, rgba(255,255,255,.13) 0 5%, transparent 6%),
+    radial-gradient(ellipse at 78% 72%, rgba(255,255,255,.10) 0 5%, transparent 6%),
+    linear-gradient(35deg, transparent 48%, rgba(255,255,255,.07) 49% 51%, transparent 52%);
+  background-color: var(--envelope);
+  background-size: 62px 62px;
+}
+
+/* Velvet Noir */
+.envelope-velvet {
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.08), transparent 20%, rgba(255,255,255,.035) 45%, transparent 70%),
+    var(--envelope);
+  box-shadow:
+    inset 0 0 45px rgba(0,0,0,.30),
+    inset 0 0 12px rgba(255,255,255,.05);
+}
+
+/* Pearl Emboss */
+.envelope-pearl {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 30%),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,.18), transparent 28%),
+    var(--envelope);
+  box-shadow:
+    inset 0 0 24px rgba(255,255,255,.20),
+    inset 0 -8px 18px rgba(0,0,0,.08);
+}
+
+/* Marble Vein */
+.envelope-marble {
+  background:
+    linear-gradient(125deg, transparent 35%, rgba(100,95,90,.13) 36%, transparent 38%),
+    linear-gradient(65deg, transparent 55%, rgba(255,255,255,.45) 56%, transparent 59%),
+    var(--envelope);
+}
+
+/* Make the mini previews match the real envelopes */
+.mini-envelope-islamic {
+  background:
+    radial-gradient(circle, transparent 0 22%, rgba(255,255,255,.22) 23% 25%, transparent 26%),
+    conic-gradient(from 22.5deg, rgba(255,255,255,.14) 0 12.5%, transparent 12.5% 25%);
+  background-color: var(--envelope, #1c3552);
+  background-size: 28px 28px;
+}
+
+.mini-envelope-arabic {
+  background:
+    radial-gradient(ellipse at center, transparent 0 28%, rgba(255,255,255,.18) 29% 33%, transparent 34%);
+  background-color: var(--envelope, #1c3552);
+  background-size: 30px 30px;
+}
+
+.mini-envelope-ottoman {
+  background:
+    linear-gradient(45deg, transparent 43%, rgba(255,255,255,.15) 44% 56%, transparent 57%),
+    linear-gradient(-45deg, transparent 43%, rgba(255,255,255,.10) 44% 56%, transparent 57%);
+  background-color: var(--envelope, #1c3552);
+  background-size: 24px 24px;
+}
+
+.mini-envelope-turkish {
+  background:
+    radial-gradient(ellipse 5px 9px at 50% 50%, rgba(255,255,255,.20) 0 45%, transparent 46%);
+  background-color: var(--envelope, #1c3552);
+  background-size: 25px 25px;
+}
+
+.mini-envelope-damask {
+  background:
+    radial-gradient(ellipse at center, transparent 0 30%, rgba(255,255,255,.16) 31% 37%, transparent 38%);
+  background-color: var(--envelope, #1c3552);
+  background-size: 30px 30px;
+}
+
+.mini-envelope-floral {
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(255,255,255,.20) 0 7%, transparent 8%),
+    radial-gradient(ellipse at 70% 70%, rgba(255,255,255,.15) 0 7%, transparent 8%);
+  background-color: var(--envelope, #1c3552);
+  background-size: 28px 28px;
+}
+
+.mini-envelope-velvet {
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.12), transparent 30%, rgba(255,255,255,.04) 55%, transparent 75%),
+    var(--envelope, #1c3552);
+}
+
+.mini-envelope-pearl {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 35%),
+    var(--envelope, #e8e4df);
+}
+
+.mini-envelope-marble {
+  background:
+    linear-gradient(125deg, transparent 35%, rgba(100,95,90,.18) 36%, transparent 42%),
+    #eeeae5;
+}
+
+/* Decorative stamp — no initials */
+.stamp-decorative-symbol {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+
+/* Make stamp color clearly visible */
+.envelope-seal {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.envelope-seal:hover {
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.22),
+    inset 0 0 0 2px rgba(255,255,255,.16);
+}
+
+/* More luxurious stamp previews */
+.mini-stamp {
+  overflow: hidden;
+}
+
+.mini-stamp-wax-round,
+.mini-stamp-wax-scallop {
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.10),
+    inset 0 0 10px rgba(0,0,0,.12);
+}
+
+.mini-stamp-gold-medallion {
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.35),
+    0 3px 8px rgba(0,0,0,.16);
+}
+
+.mini-stamp-botanical::after {
+  opacity: .35;
+}
+
+.mini-stamp-black-wax {
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.08),
+    0 3px 8px rgba(0,0,0,.20);
+}
+
+/* ========================================================= */
+/* =========================================================
+   N&N VOW — EXTRA LUXURY COLLECTION
+   ========================================================= */
+
+/* ROYAL CREST */
+.envelope-royal {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.12) 0 2px, transparent 3px),
+    linear-gradient(90deg, transparent 46%, rgba(255,255,255,.07) 47% 53%, transparent 54%),
+    linear-gradient(0deg, transparent 46%, rgba(255,255,255,.06) 47% 53%, transparent 54%),
+    var(--envelope);
+  background-size: 42px 42px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,.16);
+}
+
+.envelope-royal .envelope-flap {
+  background:
+    linear-gradient(45deg, transparent 47%, rgba(255,255,255,.12) 48% 52%, transparent 53%),
+    linear-gradient(-45deg, transparent 47%, rgba(255,255,255,.12) 48% 52%, transparent 53%),
+    var(--envelope);
+}
+
+/* MOROCCAN MOSAIC */
+.envelope-mosaic {
+  background:
+    conic-gradient(
+      from 45deg,
+      rgba(255,255,255,.13) 0 12.5%,
+      transparent 12.5% 25%,
+      rgba(255,255,255,.08) 25% 37.5%,
+      transparent 37.5% 50%,
+      rgba(255,255,255,.13) 50% 62.5%,
+      transparent 62.5% 75%,
+      rgba(255,255,255,.08) 75% 87.5%,
+      transparent 87.5%
+    );
+  background-color: var(--envelope);
+  background-size: 48px 48px;
+}
+
+.envelope-mosaic .envelope-flap {
+  background:
+    conic-gradient(
+      from 45deg,
+      rgba(255,255,255,.15) 0 12.5%,
+      transparent 12.5% 25%,
+      rgba(255,255,255,.09) 25% 37.5%,
+      transparent 37.5% 50%
+    );
+  background-color: var(--envelope);
+  background-size: 42px 42px;
+}
+
+/* CRESCENT NIGHT */
+.envelope-crescent {
+  background:
+    radial-gradient(circle at 72% 25%, rgba(255,255,255,.22) 0 5%, transparent 6%),
+    radial-gradient(circle at 75% 22%, var(--envelope) 0 5%, transparent 6%),
+    radial-gradient(circle at 20% 70%, rgba(255,255,255,.09) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 75%, rgba(255,255,255,.08) 0 2px, transparent 3px),
+    var(--envelope);
+  background-size: auto, auto, 52px 52px, 62px 62px, auto;
+  box-shadow: inset 0 0 40px rgba(0,0,0,.22);
+}
+
+.envelope-crescent .envelope-flap {
+  background:
+    radial-gradient(circle at 50% 58%, rgba(255,255,255,.16) 0 4%, transparent 5%),
+    var(--envelope);
+}
+
+/* LACE COUTURE */
+.envelope-lace {
+  background:
+    radial-gradient(circle, transparent 0 32%, rgba(255,255,255,.16) 33% 36%, transparent 37%),
+    radial-gradient(circle, transparent 0 32%, rgba(255,255,255,.10) 33% 36%, transparent 37%),
+    var(--envelope);
+  background-size: 30px 30px, 30px 30px, auto;
+  background-position: 0 0, 15px 15px, 0 0;
+}
+
+.envelope-lace .envelope-flap {
+  background:
+    radial-gradient(circle, transparent 0 30%, rgba(255,255,255,.18) 31% 35%, transparent 36%),
+    var(--envelope);
+  background-size: 26px 26px;
+}
+
+/* GARDEN PEARL */
+.envelope-garden-pearl {
+  background:
+    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.30) 0 5%, transparent 6%),
+    radial-gradient(ellipse at 82% 70%, rgba(255,255,255,.24) 0 5%, transparent 6%),
+    radial-gradient(circle at 45% 50%, rgba(255,255,255,.12), transparent 35%),
+    var(--envelope);
+  box-shadow:
+    inset 0 0 35px rgba(255,255,255,.22),
+    inset 0 -10px 25px rgba(0,0,0,.07);
+}
+
+/* GOLD FILIGREE */
+.envelope-filigree {
+  background:
+    radial-gradient(ellipse at center, transparent 0 25%, rgba(255,255,255,.13) 26% 29%, transparent 30%),
+    radial-gradient(ellipse at center, transparent 0 48%, rgba(255,255,255,.09) 49% 51%, transparent 52%),
+    var(--envelope);
+  background-size: 62px 62px;
+}
+
+.envelope-filigree .envelope-flap {
+  background:
+    radial-gradient(ellipse at center, transparent 0 27%, rgba(255,255,255,.16) 28% 31%, transparent 32%),
+    var(--envelope);
+  background-size: 54px 54px;
+}
+
+/* NEW MINI ENVELOPE PREVIEWS */
+
+.mini-envelope-royal {
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(255,255,255,.18) 47% 53%, transparent 54%),
+    linear-gradient(0deg, transparent 46%, rgba(255,255,255,.14) 47% 53%, transparent 54%),
+    var(--envelope, #1c3552);
+  background-size: 25px 25px;
+}
+
+.mini-envelope-mosaic {
+  background:
+    conic-gradient(
+      from 45deg,
+      rgba(255,255,255,.20) 0 12.5%,
+      transparent 12.5% 25%,
+      rgba(255,255,255,.12) 25% 37.5%,
+      transparent 37.5% 50%
+    ),
+    var(--envelope, #1c3552);
+  background-size: 25px 25px;
+}
+
+.mini-envelope-crescent {
+  background:
+    radial-gradient(circle at 68% 30%, rgba(255,255,255,.28) 0 4px, transparent 5px),
+    radial-gradient(circle at 71% 27%, var(--envelope, #1c3552) 0 4px, transparent 5px),
+    var(--envelope, #1c3552);
+}
+
+.mini-envelope-lace {
+  background:
+    radial-gradient(circle, transparent 0 30%, rgba(255,255,255,.20) 31% 37%, transparent 38%),
+    var(--envelope, #f0ece7);
+  background-size: 18px 18px;
+}
+
+.mini-envelope-garden-pearl {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.38), transparent 30%),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,.28), transparent 25%),
+    var(--envelope, #eee9df);
+}
+
+.mini-envelope-filigree {
+  background:
+    radial-gradient(ellipse at center, transparent 0 25%, rgba(255,255,255,.20) 26% 31%, transparent 32%),
+    var(--envelope, #1c3552);
+  background-size: 25px 25px;
+}
+
+/* =========================================================
+   NEW DECORATIVE STAMPS
+   ========================================================= */
+
+.stamp-crescent-stamp {
+  background:
+    radial-gradient(circle at 42% 42%, transparent 0 24%, rgba(255,255,255,.28) 25% 29%, transparent 30%),
+    var(--stamp-color, #b08a3e) !important;
+  border-color: var(--stamp-color, #b08a3e) !important;
+}
+
+.stamp-floral-emblem {
+  background:
+    radial-gradient(ellipse at 50% 25%, rgba(255,255,255,.20) 0 10%, transparent 11%),
+    radial-gradient(ellipse at 25% 55%, rgba(255,255,255,.18) 0 10%, transparent 11%),
+    radial-gradient(ellipse at 75% 55%, rgba(255,255,255,.18) 0 10%, transparent 11%),
+    var(--stamp-color, #b08a3e) !important;
+  border-color: var(--stamp-color, #b08a3e) !important;
+}
+
+.stamp-crown-stamp {
+  background:
+    linear-gradient(135deg, transparent 38%, rgba(255,255,255,.24) 39% 42%, transparent 43%),
+    linear-gradient(45deg, transparent 38%, rgba(255,255,255,.20) 39% 42%, transparent 43%),
+    var(--stamp-color, #b08a3e) !important;
+  border-color: var(--stamp-color, #b08a3e) !important;
+}
+
+.stamp-infinity-stamp {
+  background:
+    radial-gradient(ellipse at 35% 50%, transparent 0 18%, rgba(255,255,255,.22) 19% 24%, transparent 25%),
+    radial-gradient(ellipse at 65% 50%, transparent 0 18%, rgba(255,255,255,.22) 19% 24%, transparent 25%),
+    var(--stamp-color, #b08a3e) !important;
+  border-color: var(--stamp-color, #b08a3e) !important;
+}
+
+.stamp-star-medallion {
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255,255,255,.25) 0 12.5%,
+      transparent 12.5% 25%,
+      rgba(255,255,255,.18) 25% 37.5%,
+      transparent 37.5% 50%,
+      rgba(255,255,255,.25) 50% 62.5%,
+      transparent 62.5% 75%,
+      rgba(255,255,255,.18) 75% 87.5%,
+      transparent 87.5%
+    ),
+    var(--stamp-color, #b08a3e) !important;
+  border-color: var(--stamp-color, #b08a3e) !important;
+}
+
+/* Mini versions of new stamps */
+
+.mini-stamp-crescent-stamp {
+  background:
+    radial-gradient(circle at 42% 42%, transparent 0 23%, rgba(255,255,255,.35) 24% 29%, transparent 30%),
+    var(--stamp-color, #b08a3e) !important;
+}
+
+.mini-stamp-floral-emblem {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255,255,255,.30) 0 4px, transparent 5px),
+    radial-gradient(circle at 30% 60%, rgba(255,255,255,.25) 0 4px, transparent 5px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.25) 0 4px, transparent 5px),
+    var(--stamp-color, #b08a3e) !important;
+}
+
+.mini-stamp-crown-stamp {
+  background:
+    linear-gradient(135deg, transparent 38%, rgba(255,255,255,.28) 39% 43%, transparent 44%),
+    linear-gradient(45deg, transparent 38%, rgba(255,255,255,.24) 39% 43%, transparent 44%),
+    var(--stamp-color, #b08a3e) !important;
+}
+
+.mini-stamp-infinity-stamp {
+  background:
+    radial-gradient(ellipse at 35% 50%, transparent 0 18%, rgba(255,255,255,.28) 19% 24%, transparent 25%),
+    radial-gradient(ellipse at 65% 50%, transparent 0 18%, rgba(255,255,255,.28) 19% 24%, transparent 25%),
+    var(--stamp-color, #b08a3e) !important;
+}
+
+.mini-stamp-star-medallion {
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255,255,255,.28) 0 12.5%,
+      transparent 12.5% 25%,
+      rgba(255,255,255,.20) 25% 37.5%,
+      transparent 37.5% 50%
+    ),
+    var(--stamp-color, #b08a3e) !important;
+}
+
+/* ========================================================= */
