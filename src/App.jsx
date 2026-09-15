@@ -971,7 +971,13 @@ export default function App() {
           )}
         </ul>
         <div className="navbar-actions">
-          <button className="lang-toggle" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>
+          <button className="lang-toggle" onClick={() => {
+  const nextLang = lang === 'en' ? 'ar' : 'en';
+  setLang(nextLang);
+  if (page === 'public' || page === 'demo' || page === 'preview') {
+    setCustomizationData(prev => ({ ...(prev || {}), invitationLanguage: nextLang }));
+  }
+}}>
             <Globe size={14} style={{ display: 'inline', marginRight: '4px' }} />
             {lang === 'en' ? 'العربية' : 'English'}
           </button>
